@@ -39,7 +39,7 @@ passport.use(
       domain,
       clientID,
       clientSecret,
-      callbackURL: "/api/login"
+      callbackURL: "/login"
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
       app
@@ -71,8 +71,10 @@ passport.deserializeUser(function(obj, done) {
 });
 
 app.get(
-  "/api/login",
-  passport.authenticate("auth0", { successRedirect: "/api/me" })
+  "/login",
+  passport.authenticate("auth0", {
+    successRedirect: "http://localhost:3000/"
+  })
 );
 
 app.get("/api/me", function(req, res) {

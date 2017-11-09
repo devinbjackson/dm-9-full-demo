@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import router from "./router";
+import router from "../../router";
 import "./App.css";
 
 class App extends Component {
