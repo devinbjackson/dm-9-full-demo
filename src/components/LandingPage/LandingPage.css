@@ -1,0 +1,5 @@
+.section-line{
+    height: 1px;
+    background: linear-gradient(left, white, black, white );
+    width:100%;
+}

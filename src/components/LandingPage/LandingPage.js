@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 
+import DemoCarousel from "../DemoCarousel/DemoCarousel"
+import FillerCard from '../FillerCard/FillerCard';
 import { requestUser } from "../../ducks/reducer";
+import './LandingPage.css';
 
 class LandingPage extends Component {
   constructor(props) {
@@ -14,20 +17,25 @@ class LandingPage extends Component {
     //   if (!response.data) this.setState({ user: null });
     //   else this.setState({ user: response.data });
     // });
-    this.props.requestUser();
+   // this.props.requestUser();
   }
   render() {
     return (
-      <div>
-        <h1>Hello World</h1>
-        <Link to="/login">
-          <button>Login</button>
+      <div className="landing-whole">
+        <DemoCarousel/>
+        
           {this.props.user.name && (
             <div>
               {this.props.user.name} & {this.props.user.authid}
             </div>
           )}
-        </Link>
+          {/* <FillerCard name="ACCESSORIES"/> */}
+          <div className="section-line"></div>    
+          <FillerCard name="MEN"/>
+          <div className="section-line"></div>  
+          <FillerCard name="WOMEN"/>
+          <div className="section-line"></div>  
+          <FillerCard name="ACCESSORIES"/>
       </div>
     );
   }

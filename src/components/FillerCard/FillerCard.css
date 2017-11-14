@@ -1,0 +1,26 @@
+.filler-whole {
+    height: 700px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.filler-list{
+    display: flex;
+
+}
+
+.list-image {
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+    border: 3px solid #c99;
+    background-position: center center;
+    background-size: cover;
+}
+
+.filler-list{
+    display: flex;
+}

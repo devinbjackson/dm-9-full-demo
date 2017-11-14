@@ -1,0 +1,15 @@
+.nav-whole{
+    display: flex;
+    justify-content: space-between;
+    background: transparent;
+    position: relative;
+    top:0;
+    margin-bottom:-110px ;
+    z-index: 2;
+    color: white;
+    align-items: center;
+    height: 110px;
+}
+.nav-logo{
+    margin-left: 12px;
+}

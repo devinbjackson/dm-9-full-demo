@@ -1,0 +1,1 @@
+SELECT image_url, name, product_id FROM vintage_products WHERE department = $1;

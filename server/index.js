@@ -6,16 +6,14 @@ const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
-const { dbUser, database } = require("../config").massive;
 const { secret } = require("../config").session;
 const { domain, clientID, clientSecret } = require("../config.js").auth0;
 
 const port = 3001;
-const connectionString = `postgres://${dbUser}@localhost/${database}`;
-
+const { connectionString } = require('../config').massive;
 const app = express();
 
-app.use(express.static(`${__dirname}/build`));
+//app.use(express.static(`${__dirname}/build`));
 
 app.use(
   session({
@@ -83,6 +81,26 @@ app.get("/api/me", function(req, res) {
   if (!req.user) return res.status(404);
   res.status(200).json(req.user);
 });
+
+app.get("/api/departments/:dep",function(req, res) {
+  req.app
+  .get("db")
+  .getProductsByDep([req.params.dep])
+  .then(response => {
+    res.json(response);
+  })
+  .catch(console.log);
+})
+
+app.get("/api/departments/filler/:dep",function(req, res) {
+  req.app
+  .get("db")
+  .get4ProductsByDep([req.params.dep])
+  .then(response => {
+    res.json(response);
+  })
+  .catch(console.log);
+})
 
 app.get("/api/test", (req, res, next) => {
   req.app

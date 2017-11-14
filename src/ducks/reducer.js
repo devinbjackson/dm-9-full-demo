@@ -1,6 +1,7 @@
 import axios from "axios";
 // Action Constants
 const REQ_USER = "REQ_USER";
+const LOGIN_USER = "LOGIN_USER"
 
 // Action Creators
 export function requestUser() {
@@ -10,10 +11,18 @@ export function requestUser() {
   };
 }
 
+export function loginUser() {
+  return  {
+    type: LOGIN_USER,
+    payload: true
+  }
+}
+
 // Initial State
 
 const initialState = {
-  user: {}
+  user: {},
+  loggedIn: false
 };
 
 // Reducer
@@ -27,6 +36,8 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         user: action.payload
       });
+      case LOGIN_USER:
+      return Object.assign({}, state, { loggedIn: action.payload });
     default:
       return state;
   }
