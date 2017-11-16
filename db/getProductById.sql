@@ -1,0 +1,1 @@
+SELECT * FROM vintage_products WHERE product_id = $1;

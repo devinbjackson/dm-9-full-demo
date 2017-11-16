@@ -10,7 +10,7 @@ const { secret } = require("../config").session;
 const { domain, clientID, clientSecret } = require("../config.js").auth0;
 
 const port = 3001;
-const { connectionString } = require('../config').massive;
+const { connectionString } = require("../config").massive;
 const app = express();
 
 //app.use(express.static(`${__dirname}/build`));
@@ -19,9 +19,14 @@ app.use(
   session({
     secret,
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    maxAge: 9999999
   })
 );
+app.use((req, res, next) => {
+  console.log("SESSION", req.session);
+  next();
+});
 
 massive(connectionString)
   .then(db => app.set("db", db))
@@ -77,30 +82,57 @@ app.get(
   })
 );
 
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("http://localhost:3000/");
+});
+
 app.get("/api/me", function(req, res) {
+  console.log(req.user);
   if (!req.user) return res.status(404);
   res.status(200).json(req.user);
 });
 
-app.get("/api/departments/:dep",function(req, res) {
-  req.app
-  .get("db")
-  .getProductsByDep([req.params.dep])
-  .then(response => {
-    res.json(response);
-  })
-  .catch(console.log);
-})
+app.get("/api/cart", (req, res, next) => {
+  if (!req.session.cart) req.session.cart = [];
+  res.json(req.session.cart);
+});
 
-app.get("/api/departments/filler/:dep",function(req, res) {
+app.post("/api/cart", (req, res, next) => {
+  if (!req.session.cart) req.session.cart = [];
+  req.session.cart.push(req.body);
+  res.json(req.session.cart);
+});
+
+app.get("/api/departments/:dep", function(req, res) {
   req.app
-  .get("db")
-  .get4ProductsByDep([req.params.dep])
-  .then(response => {
-    res.json(response);
-  })
-  .catch(console.log);
-})
+    .get("db")
+    .getProductsByDep([req.params.dep])
+    .then(response => {
+      res.json(response);
+    })
+    .catch(console.log);
+});
+
+app.get("/api/departments/filler/:dep", function(req, res) {
+  req.app
+    .get("db")
+    .get4ProductsByDep([req.params.dep])
+    .then(response => {
+      res.json(response);
+    })
+    .catch(console.log);
+});
+
+app.get("/api/details/:productId", function(req, res) {
+  req.app
+    .get("db")
+    .getProductById([req.params.productId])
+    .then(response => {
+      res.json(response);
+    })
+    .catch(console.log);
+});
 
 app.get("/api/test", (req, res, next) => {
   req.app

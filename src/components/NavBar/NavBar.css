@@ -11,5 +11,10 @@
     height: 110px;
 }
 .nav-logo{
-    margin-left: 12px;
+    margin-left: px;
+}
+
+.nav-signIn-cart img{
+    height: 30px;
+    width: 30px;
 }

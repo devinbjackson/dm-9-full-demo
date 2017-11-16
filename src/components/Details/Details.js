@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import { connect } from "react-redux";
 
+import AddToCart from "../AddToCart/AddToCart";
 import './Details.css';
 
 class Details extends Component {
@@ -11,27 +12,38 @@ class Details extends Component {
         super(props);
         
         this.state ={
-            product: []
+            product: {}
         }
 
       }
 
       componentDidMount(){
-        axios.get(`/api/details/${this.props.name}`)
+        axios.get(`/api/details/${this.props.match.params.id}`)
         .then(response =>{ 
-        this.setState({list: response.data})
-         console.log(response)
+        this.setState({product: response.data[0]})
+         console.log(response.data[0])
         })
-      
+        console.log(this.state.product);
       }
 
     render() {
-
+        const product = this.state.product ? this.state.product : "";
+        
         return (
            <div className="details-whole">
               <div className="detailsCard">
-              {this.state.product}
+
+
+
+               {product.name}
+               {product.price}
+               <img style={{width: "100px", height: "200px"}}src={product.image_url}/>
+
+
+
+
               </div>
+              <AddToCart product={product}/>
 
            </div> 
         );

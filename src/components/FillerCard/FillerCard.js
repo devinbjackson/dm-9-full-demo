@@ -20,7 +20,6 @@ class FillerCard extends Component {
         axios.get(`/api/departments/filler/${this.props.name}`)
         .then(response =>{ 
         this.setState({list: response.data})
-         console.log(response)
         })
       
       }
@@ -40,7 +39,8 @@ class FillerCard extends Component {
 
         return (
            <div className="filler-whole">
-               <div>{this.props.name}
+               <div>
+               {this.props.name}
                </div>
               <div className="filler-list"> {list}</div>
 

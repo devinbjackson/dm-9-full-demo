@@ -14,10 +14,10 @@ class LandingPage extends Component {
   }
   componentDidMount() {
     // axios.get("/api/me").then(response => {
-    //   if (!response.data) this.setState({ user: null });
-    //   else this.setState({ user: response.data });
-    // });
-   // this.props.requestUser();
+    //    if (!response.data) this.setState({ user: null });
+    //    else this.setState({ user: response.data });
+    //  });
+     this.props.requestUser();
   }
   render() {
     return (
@@ -29,7 +29,6 @@ class LandingPage extends Component {
               {this.props.user.name} & {this.props.user.authid}
             </div>
           )}
-          {/* <FillerCard name="ACCESSORIES"/> */}
           <div className="section-line"></div>    
           <FillerCard name="MEN"/>
           <div className="section-line"></div>  
@@ -42,5 +41,6 @@ class LandingPage extends Component {
 }
 
 const mapStateToProps = state => state;
+
 
 export default connect(mapStateToProps, { requestUser })(LandingPage);

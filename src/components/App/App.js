@@ -5,19 +5,20 @@ import router from "../../router";
 import "./App.css";
 import NavBar from '../NavBar/NavBar';
 import Footer from '../Footer/Footer';
+import CartDisplay from '../CartDisplay/CartDisplay'
 
 class App extends Component {
-  componentDidMount() {
-    // axios.get("/api/test").then(response => {
-    //   console.log(response);
-    // });
-  }
+  // componentDidMount() {
+  //   axios.get("/api/cart").then(response => {
+  //     console.log('CART', response);
+  //   });
+  // }
   render() {
     return <div className="App">
     <NavBar/>
     {router}
     <Footer/>
-    
+    <CartDisplay/>
     </div>;
   }
 }

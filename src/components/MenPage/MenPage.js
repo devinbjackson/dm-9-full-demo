@@ -28,7 +28,7 @@ class MenPage extends Component {
     const list = 
     
     this.state.list.map(function(item){
-    return (<Link to={`/details/${this.state.list.product_id}`}><div className="list-item">
+    return (<Link to={`/details/${item.product_id}`}><div className="list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
            </div>
            {item.name}
