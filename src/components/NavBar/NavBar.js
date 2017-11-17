@@ -24,7 +24,9 @@ class NavBar extends Component {
     //  });
     this.props.requestUser();
     this.props.refreshCart();
+
   }
+
   handleLogout() {
     window.location.href = "http://localhost:3001/logout";
   }
@@ -32,13 +34,14 @@ class NavBar extends Component {
   render() {
     const guy = this.props.user.authid;
     const logInText = function() {
-      if (guy) {
-        return "LOG OUT";
-      } else {
-        return "LOG IN";
-      }
-    };
-    console.log(this)
+        if (guy) {
+          return "LOG OUT";
+        } else {
+          return "LOG IN";
+        }
+      };  
+    const cartNumber = (this.props.cart.length? this.props.cart.length : "");
+
     return (
       <div className="nav-whole">
         <Link to="/">
@@ -69,7 +72,7 @@ class NavBar extends Component {
           >
             {logInText()}
           </a>
-          {this.props.cart.length}
+          {cartNumber}
           <img src={logo_img} />
         </div>
       </div>

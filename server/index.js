@@ -15,16 +15,29 @@ const app = express();
 
 //app.use(express.static(`${__dirname}/build`));
 
+const SERVER_CONFIGS = require('./constants/server');
+
+const configureServer = require('./server');
+const configureRoutes = require('./routes');
+
+configureServer(app);
+configureRoutes(app);
+
+let count = 0;
+
+
+
 app.use(
   session({
     secret,
     resave: false,
     saveUninitialized: false,
-    maxAge: 9999999
   })
 );
 app.use((req, res, next) => {
-  console.log("SESSION", req.session);
+ console.log("SESSION", req.session);
+ console.log('COUNT', count);
+ count+=1;
   next();
 });
 
@@ -56,7 +69,7 @@ passport.use(
               .get("db")
               .createUserByAuth([profile.id, profile.displayName])
               .then(created => {
-                console.log(created);
+                console.log('CREATED', created);
                 return done(null, created[0]);
               });
           } else {
@@ -84,8 +97,20 @@ app.get(
 
 app.get("/logout", function(req, res) {
   req.logout();
+  req.session.destroy();
   res.redirect("http://localhost:3000/");
 });
+
+app.get("/api/paySuccess", (req, res, next) => {
+  console.log("------------------------------------------------------------------------------------------",req.session.cart)
+  // if(!req.session.cart) req.session.cart = [];
+  req.session.purchases = [...req.session.cart];
+  console.log("before the delete",req.session)
+  delete req.session.cart;
+  console.log(req.session)
+  res.redirect('http://localhost:3000');
+  // res.json(req.session.purchases);
+} )
 
 app.get("/api/me", function(req, res) {
   console.log(req.user);
@@ -95,15 +120,17 @@ app.get("/api/me", function(req, res) {
 
 app.get("/api/cart", (req, res, next) => {
   if (!req.session.cart) req.session.cart = [];
+  console.log('IN GET: ', req.session.cart);
   res.json(req.session.cart);
 });
 
 app.post("/api/cart", (req, res, next) => {
   if (!req.session.cart) req.session.cart = [];
+  console.log('IN POST: ', req.session.cart);
   req.session.cart.push(req.body);
   res.json(req.session.cart);
 });
-
+ 
 app.get("/api/departments/:dep", function(req, res) {
   req.app
     .get("db")

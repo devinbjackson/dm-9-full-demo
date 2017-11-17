@@ -8,11 +8,7 @@ import Footer from '../Footer/Footer';
 import CartDisplay from '../CartDisplay/CartDisplay'
 
 class App extends Component {
-  // componentDidMount() {
-  //   axios.get("/api/cart").then(response => {
-  //     console.log('CART', response);
-  //   });
-  // }
+
   render() {
     return <div className="App">
     <NavBar/>

@@ -4,6 +4,7 @@ const REQ_USER = "REQ_USER";
 const LOGIN_USER = "LOGIN_USER";
 const POST_CART = "POST_CART";
 const GET_CART = "GET_CART";
+const DESTROY_CART = "DESTROY_CART";
 
 // Action Creators
 export function requestUser() {
@@ -12,6 +13,22 @@ export function requestUser() {
     payload: axios.get("/api/me").then(response => response.data)
   };
 }
+
+export function destroyCart(){
+  return {
+    type: DESTROY_CART,
+    payload: []
+  }
+}
+
+// export function destroyCart(){
+//   return {
+//     type: DESTROY_CART,
+//     payload: axios.get("http://localhost:3001/api/paySuccess").then(response => []);
+    
+//   }
+// }
+
 
 export function loginUser() {
   return {
@@ -28,7 +45,7 @@ export function addToCart(pro000duct) {
         pro000duct
       )
       .then(function(response) {
-        console.log(response.data);
+        console.log( "cart from session" ,response.data)
         return response.data;
       })
       .catch(function(error) {
@@ -43,7 +60,6 @@ export function refreshCart() {
     payload: axios
       .get("/api/cart")
       .then(function(response) {
-        console.log(response.data);
         return response.data;
       })
       .catch(function(error) {
@@ -68,7 +84,6 @@ export default function reducer(state = initialState, action) {
     case POST_CART + "_PENDING":
       return Object.assign({}, state, { isLoading: true });
     case POST_CART + "_FULFILLED":
-      console.log(action.payload);
       return Object.assign({}, state, {
         isLoading: false,
         cart: action.payload
@@ -86,7 +101,15 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         cart: action.payload
       });
-      
+
+    //   case DESTROY_CART + "_PENDING":
+    //   return Object.assign({}, state)
+    // case DESTROY_CART + "_FULFILLED":
+    //     return Object.assign({}, state, {cart: action.payload})
+  
+        case DESTROY_CART:
+        console.log(action.payload);
+        return Object.assign({}, state, {cart: action.payload})
 
     case REQ_USER + "_PENDING":
       return Object.assign({}, state, { isLoading: true });

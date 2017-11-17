@@ -21,9 +21,7 @@ class Details extends Component {
         axios.get(`/api/details/${this.props.match.params.id}`)
         .then(response =>{ 
         this.setState({product: response.data[0]})
-         console.log(response.data[0])
         })
-        console.log(this.state.product);
       }
 
     render() {
@@ -37,7 +35,7 @@ class Details extends Component {
 
                {product.name}
                {product.price}
-               <img style={{width: "100px", height: "200px"}}src={product.image_url}/>
+               <img style={{width: "100px", height: "200px"}}  src={product.image_url}/>
 
 
 

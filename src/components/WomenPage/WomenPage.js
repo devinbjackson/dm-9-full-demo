@@ -20,7 +20,6 @@ class WomenPage extends Component {
     axios.get(`/api/departments/WOMEN`)
     .then(response =>{ 
     this.setState({list: response.data})
-     console.log(response)
     })
   
   }
@@ -37,7 +36,7 @@ class WomenPage extends Component {
    })
     return (
       <div className="womenPage-whole">
-        <div className="womenPage-image" style={{backgroundImage: `url(https://i.pinimg.com/originals/ed/d2/21/edd221d4a62186dbcd1e3c97a2f411b6.jpg)`}}></div>
+        <div className="page-image" style={{backgroundImage: `url(https://i.pinimg.com/originals/ed/d2/21/edd221d4a62186dbcd1e3c97a2f411b6.jpg)`}}></div>
         
         <div className="filler-list"> {list}</div>
         

@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import { connect } from "react-redux";
 
+import Checkout from "../../Checkout";
 import './CartDisplay.css';
 
 class CartDisplay extends Component {
@@ -17,7 +18,7 @@ class CartDisplay extends Component {
       
 
     render() {
-        console.log(this.props.cart)
+      
        const list = this.props.cart.length? this.props.cart.map(function(item){
             return (<Link to={`/details/${item.product_id}`}>
              <div className="cart-list-item">
@@ -26,11 +27,15 @@ class CartDisplay extends Component {
               {item.name}
               </div>
               </Link>)
-            }):"poop"
-        
-        
+            }):"";
+        const total = this.props.cart.length ? this.props.cart.reduce(function(acc, item){
+            
+            return acc + parseFloat(item.price);
+
+        }, 0):0;
+
         return (
-            <div id="thiswillberemoved">
+        <div>
            <h1 className="cartDisplay-whole">
                     SHOPPING CART
            </h1> 
@@ -38,8 +43,13 @@ class CartDisplay extends Component {
            <div id="cart-view-box">
            {list} 
            </div>
-
+           <Checkout
+            name={'Payment'}
+            description={'Powered By Stripe'}
+            amount={total}
+           /> 
            </div>
+           
         );
     }
 };
