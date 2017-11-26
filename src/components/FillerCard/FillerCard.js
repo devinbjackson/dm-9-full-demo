@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Link} from 'react-router-dom';
 import axios from "axios";
 import { connect } from "react-redux";
+import FlatButton from 'material-ui/FlatButton';
 
 import './FillerCard.css';
 
@@ -32,19 +33,34 @@ class FillerCard extends Component {
           <div className="list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
            </div>
+           <div className="filler_image_name">
            {item.name}
+           </div>
            </div>
            </Link>)
         })
 
         return (
            <div className="filler-whole">
-               <div>
-               {this.props.name}
+               <div class="top-margin">
+               {this.props.name === 'ACCESSORIES'?
+              <div className="title_text">NEW {this.props.name}</div>
+              :
+              <div className="title_text">NEW {this.props.name}'S ITEMS</div>
+               }
                </div>
-              <div className="filler-list"> {list}</div>
+                    
+                     <div className="filler-list"> {list.length % 2 === 0 ? list : (list, 
+                        <div className="list-item blank">
+                            <div className="list-image">
+                            </div>
+                        </div>
+                    )}</div>
+                    
 
-            <Link to={`/${this.props.name}`}><button>SEE {this.props.name}</button></Link>
+            <Link to={`/${this.props.name}`}>
+            <div className="bordered"><FlatButton label={` SEE ${this.props.name}`} /></div>
+            </Link>
            </div> 
         );
     }

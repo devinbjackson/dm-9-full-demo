@@ -88,8 +88,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-app.get(
-  "/login",
+app.get("/login",
   passport.authenticate("auth0", {
     successRedirect: "http://localhost:3000/"
   })

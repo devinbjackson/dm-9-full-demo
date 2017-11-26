@@ -1,0 +1,13 @@
+#checkout_view_whole{
+    height:400vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    background: darkgoldenrod
+}
+
+#checkout_view_whole form{  
+    display: flex;
+    flex-direction: column;
+
+}

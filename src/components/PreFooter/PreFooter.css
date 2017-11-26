@@ -1,0 +1,14 @@
+.preFooter-whole{
+    height: 300px;
+    width: 100%;
+    background: rgb(255, 220, 220);
+    display: flex;
+    color: white;
+    font-size: 2em;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat; 
+    background-position-y: bottom;
+}

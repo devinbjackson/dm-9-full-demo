@@ -3,7 +3,12 @@ import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
-import logo_img from "./cart_logo.png";
+import Drawer from "material-ui/Drawer";
+import MenuItem from "material-ui/MenuItem";
+import RaisedButton from "material-ui/RaisedButton";
+import Badge from "material-ui/Badge";
+
+import cart_img from "./cart-logo.svg";
 import { requestUser, refreshCart } from "../../ducks/reducer";
 
 import "./NavBar.css";
@@ -13,7 +18,13 @@ class NavBar extends Component {
     super(props);
 
     this.handleLogin = this.handleLogin.bind(this);
+    this.state = { open: false };
   }
+
+  handleToggle = () => this.setState({ open: !this.state.open });
+
+  handleClose = () => this.setState({ open: false });
+
   handleLogin() {
     window.location.href = "http://localhost:3001/login";
   }
@@ -24,7 +35,7 @@ class NavBar extends Component {
     //  });
     this.props.requestUser();
     this.props.refreshCart();
-
+    this.setState({ open: false });
   }
 
   handleLogout() {
@@ -34,14 +45,46 @@ class NavBar extends Component {
   render() {
     const guy = this.props.user.authid;
     const logInText = function() {
-        if (guy) {
-          return "LOG OUT";
-        } else {
-          return "LOG IN";
-        }
-      };  
-    const cartNumber = (this.props.cart.length? this.props.cart.length : "");
-
+      if (guy) {
+        return "LOG OUT";
+      } else {
+        return "LOG IN";
+      }
+    };
+    const cartNumber = this.props.cart.length ? this.props.cart.length : "";
+    const items = [];
+    for (let i = 0; i < this.props.cart.length; i++) {
+      items.push(
+        <MenuItem
+        className="cart-drawer"
+          onClick={this.handleClose}
+          value={this.props.cart[i].product_id}
+          key={i}
+        >
+          {/* -----------------------------------------------------------------------------------Router doesn't work as intended here */}
+          <Link to={`details/${this.props.cart[i].product_id}`}>
+            <div className="sides">
+              <div className="left-side">
+                <img
+                  style={{ width: "50px", height: "50px" }}
+                  src={`${this.props.cart[i].image_url}`}
+                />
+              </div>
+              <div
+                className="right-side"
+                style={{
+                  display: "flex",
+                  flexDirection: "column"
+                }}
+              >
+                <div>{`${this.props.cart[i].name}`}</div>
+                <div>{` - $${this.props.cart[i].price}`}</div>
+              </div>
+            </div>
+          </Link>
+        </MenuItem>
+      );
+    }
     return (
       <div className="nav-whole">
         <Link to="/">
@@ -63,18 +106,79 @@ class NavBar extends Component {
           <div className="nav-acc">ACCESSORIES</div>
         </Link>
 
+      { cartNumber ?
         <div className="nav-signIn-cart">
           {this.props.user.name}
-          <a
-            onClick={
-              this.props.user.authid ? this.handleLogout : this.handleLogin
-            }
-          >
+
+          <a onClick={ this.props.user.authid ? this.handleLogout : this.handleLogin}>
             {logInText()}
-          </a>
-          {cartNumber}
-          <img src={logo_img} />
+          </a> 
+
+
+          {cartNumber ? (
+            <a>
+              <Badge id="cart-badge" badgeContent={cartNumber} primary={true}>
+                <img src={cart_img} onClick={this.handleToggle} />
+              </Badge>
+            </a>
+          ) : (
+            <a>
+              <img id="just-cart" src={cart_img} onClick={this.handleToggle} />
+            </a>
+          )}
         </div>
+        : 
+        <div className="nav-signIn-cart" id="nav-signIn-noBadge">
+        {this.props.user.name}
+
+        <a onClick={ this.props.user.authid ? this.handleLogout : this.handleLogin}>
+          {logInText()}
+        </a> 
+
+
+        {cartNumber ? (
+          <a>
+            <Badge id="cart-badge" badgeContent={cartNumber} primary={true}>
+              <img src={cart_img} onClick={this.handleToggle} />
+            </Badge>
+          </a>
+        ) : (
+          <a>
+            <img id="just-cart" src={cart_img} onClick={this.handleToggle} />
+          </a>
+        )}
+      </div>
+
+      }
+
+        {/* -------------------------------------------------- */}
+        <Drawer
+          docked={false}
+          width={400}
+          openSecondary={true}
+          open={this.state.open}
+          onRequestChange={open => this.setState({ open })}
+        >
+          {this.props.cart.length ? items : "Your cart is empty"}
+          {this.props.cart.length ? (
+            <Link to="/checkout">
+              {" "}
+              <RaisedButton
+                onClick={this.handleClose}
+                primary
+                label="CHECK OUT"
+                fullWidth={true}
+              />
+            </Link>
+          ) : (
+            <RaisedButton
+              onClick={this.handleClose}
+              primary
+              label="SHOP"
+              fullWidth={true}
+            />
+          )}
+        </Drawer>
       </div>
     );
   }

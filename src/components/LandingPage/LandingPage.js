@@ -22,7 +22,7 @@ class LandingPage extends Component {
   render() {
     return (
       <div className="landing-whole">
-        <DemoCarousel/>
+        <DemoCarousel className="hundovh"/>
         
           {this.props.user.name && (
             <div>

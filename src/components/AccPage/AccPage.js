@@ -31,16 +31,16 @@ render() {
   return (<Link to={`/details/${item.product_id}`}><div className="list-item">
          <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
          </div>
-         {item.name}
+         <div className="filler_image_name">
+           {item.name}
+           </div>
          </div>
          </Link>)
  })
   return (
-      <div className="accPage-whole">
-      <div className="page-image" style={{backgroundImage: `url(https://i.pinimg.com/originals/3a/7a/69/3a7a69fb1b6b19e588e93cce0ab5f058.jpg)`}}></div>
-      
+      <div className="productPage-whole">
+      <div className="page-image" style={{backgroundImage: `url(https://wallup.net/wp-content/uploads/2016/05/25/163541-fabric-texture-plaid-748x498.jpg)`}}></div>
       <div className="filler-list"> {list}</div>
-      
       
     </div>
   );

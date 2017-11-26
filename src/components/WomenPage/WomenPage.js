@@ -30,16 +30,16 @@ class WomenPage extends Component {
     return (<Link to={`/details/${item.product_id}`}><div className="list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
            </div>
+           <div className="filler_image_name">
            {item.name}
+           </div>
            </div>
            </Link>)
    })
     return (
-      <div className="womenPage-whole">
-        <div className="page-image" style={{backgroundImage: `url(https://i.pinimg.com/originals/ed/d2/21/edd221d4a62186dbcd1e3c97a2f411b6.jpg)`}}></div>
-        
+      <div className="productPage-whole">
+        <div className="page-image" style={{backgroundImage: `url(http://www.gap.com/Asset_Archive/GPWeb/content/0014/392/167/assets/desktop/01_DESK_IMG.jpg)`}}></div>
         <div className="filler-list"> {list}</div>
-        
         
       </div>
     );

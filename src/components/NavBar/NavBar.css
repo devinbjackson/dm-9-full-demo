@@ -1,7 +1,7 @@
 .nav-whole{
     display: flex;
     justify-content: space-between;
-    background: transparent;
+    background: linear-gradient( rgb(0, 0, 0), rgba(255,0,0,0));
     position: relative;
     top:0;
     margin-bottom:-110px ;
@@ -9,12 +9,83 @@
     color: white;
     align-items: center;
     height: 110px;
+    
 }
-.nav-logo{
-    margin-left: px;
+
+a { text-decoration: none; }
+
+a:visited { text-decoration: none; 
+color: white}
+a:hover { text-decoration: none; 
+cursor: pointer}
+a:focus { text-decoration: none; }
+a:hover, a:active { text-decoration: none; }
+
+.nav-whole > .nav-logo{
+    margin-left: 1px;
 }
 
 .nav-signIn-cart img{
     height: 30px;
     width: 30px;
 }
+
+.nav-signIn-cart {
+    margin-top: -28px;
+}
+#cart-badge{
+    margin-bottom: 0;
+    position: relative;
+    bottom: -8px;
+}
+
+.left-side{
+    float: left;
+    width:30%
+}
+.right-side{
+    float: right;
+    width:70%
+}
+.sides {
+    display:flex;
+
+}
+
+@font-face{
+    font-family: 'Material Icons';
+    src: url("https://fonts.googleapis.com/icon?family=Material+Icons");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.material-icons{
+    font-family: 'Material Icons';
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+
+.cart-drawer{
+    color: black;
+}
+.cart-drawer:visited{
+    text-decoration: none;
+    color: black;
+}
+
+#nav-signIn-noBadge{
+    margin-bottom: -12px;
+}
+
+#nav-signIn-noBadge img{
+    position: relative;
+    bottom: -7px;
+    left: 14px;
+}
+

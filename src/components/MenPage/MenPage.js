@@ -28,19 +28,20 @@ class MenPage extends Component {
     const list = 
     
     this.state.list.map(function(item){
-    return (<Link to={`/details/${item.product_id}`}><div className="list-item">
+    return (<Link to={`/details/${item.product_id}`}>
+        <div className="list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
            </div>
+           <div className="filler_image_name">
            {item.name}
+           </div>
            </div>
            </Link>)
    })
     return (
-        <div className="menPage-whole">
-        <div className="page-image" style={{backgroundImage: `url(https://jordanandeddie.files.wordpress.com/2015/09/matthew-post.jpg)`}}></div>
-        
+        <div className="productPage-whole">
+        <div className="page-image" style={{backgroundImage: `url(http://www.gap.com/Asset_Archive/GPWeb/content/0014/392/169/assets/desktop/01_DESK_IMG.jpg)`}}></div>
         <div className="filler-list"> {list}</div>
-        
         
       </div>
     );

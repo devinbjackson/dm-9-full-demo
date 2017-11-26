@@ -1,5 +1,32 @@
 .footer-whole {
-    height: 400px;
+
     background-color: black;
     color: white;
+    display: flex;
+    justify-content: space-around;
+    align-content: space-between;
+    padding: 50px;
 }
+
+.contact-section-items{
+    margin-bottom: 14px;
+}
+
+.nav-logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+   .footer-whole{ display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+   }
+
+ }
+
+ 
