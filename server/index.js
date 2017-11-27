@@ -123,6 +123,17 @@ app.get("/api/cart", (req, res, next) => {
   res.json(req.session.cart);
 });
 
+app.delete("/api/cart/:id", (req, res, next) => {
+  const deleteID = req.params.id;
+  const newCart = req.session.cart.filter(
+    function(elem, index){
+      return (elem.product_id != deleteID)
+    }  
+  );
+  console.log('in rem from cart', newCart);
+  res.json(newCart);
+});
+
 app.post("/api/cart", (req, res, next) => {
   if (!req.session.cart) req.session.cart = [];
   console.log('IN POST: ', req.session.cart);

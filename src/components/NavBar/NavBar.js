@@ -9,7 +9,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import Badge from "material-ui/Badge";
 
 import cart_img from "./cart-logo.svg";
-import { requestUser, refreshCart } from "../../ducks/reducer";
+import { requestUser, refreshCart, removeFromCart } from "../../ducks/reducer";
 
 import "./NavBar.css";
 
@@ -23,11 +23,12 @@ class NavBar extends Component {
 
   handleToggle = () => this.setState({ open: !this.state.open });
 
-  handleClose = () => this.setState({ open: false });
+  handleClose = () => {this.setState({ open: false })};
 
   handleLogin() {
     window.location.href = "http://localhost:3001/login";
   }
+  
   componentDidMount() {
     // axios.get("/api/me").then(response => {
     //    if (!response.data) this.setState({ user: null });
@@ -37,7 +38,7 @@ class NavBar extends Component {
     this.props.refreshCart();
     this.setState({ open: false });
   }
-
+  
   handleLogout() {
     window.location.href = "http://localhost:3001/logout";
   }
@@ -55,14 +56,20 @@ class NavBar extends Component {
     const items = [];
     for (let i = 0; i < this.props.cart.length; i++) {
       items.push(
+
+
+
+       //ITEMS TO GO IN THE CART DISPLAY
+
+
+
         <MenuItem
         className="cart-drawer"
           onClick={this.handleClose}
           value={this.props.cart[i].product_id}
           key={i}
         >
-          {/* -----------------------------------------------------------------------------------Router doesn't work as intended here */}
-          <Link to={`details/${this.props.cart[i].product_id}`}>
+          <Link to={`/details/${this.props.cart[i].product_id}`}>
             <div className="sides">
               <div className="left-side">
                 <img
@@ -79,10 +86,20 @@ class NavBar extends Component {
               >
                 <div>{`${this.props.cart[i].name}`}</div>
                 <div>{` - $${this.props.cart[i].price}`}</div>
+                <RaisedButton
+                onClick={()=>this.props.removeFromCart(this.props.cart[i].product_id)}
+                primary
+                label="REMOVE"
+                fullWidth={true}
+              />
               </div>
             </div>
           </Link>
         </MenuItem>
+
+
+
+
       );
     }
     return (
@@ -94,8 +111,8 @@ class NavBar extends Component {
               src="https://cdn.shopify.com/s/files/1/1204/3438/files/Bon-Tot-Edinburgh-Logo_57786928-f63e-4872-be6a-603a79953edd_600x.png?v=1505911147"
             />
           </div>
+          
         </Link>
-
         <Link to="/men">
           <div className="nav-men">MEN</div>
         </Link>
@@ -151,8 +168,12 @@ class NavBar extends Component {
 
       }
 
+
+
+
         {/* -------------------------------------------------- */}
-        <Drawer
+        <Drawer 
+          containerStyle={{backgroundColor: "grey"}}
           docked={false}
           width={400}
           openSecondary={true}
@@ -164,6 +185,7 @@ class NavBar extends Component {
             <Link to="/checkout">
               {" "}
               <RaisedButton
+                style={{bottom: 0, }}
                 onClick={this.handleClose}
                 primary
                 label="CHECK OUT"
@@ -186,4 +208,4 @@ class NavBar extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, { requestUser, refreshCart })(NavBar);
+export default connect(mapStateToProps, { requestUser, refreshCart, removeFromCart })(NavBar);

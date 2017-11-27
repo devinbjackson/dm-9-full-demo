@@ -1,6 +1,12 @@
 import React from 'react';
 import './PreFooter.css';
 import {Link} from "react-router-dom";
+import pic1 from './PreFooterImages/7.jpg';
+import pic2 from'./PreFooterImages/2.jpg';
+import pic3 from'./PreFooterImages/3.jpg';
+import pic4 from'./PreFooterImages/4.jpg';
+import pic5 from'./PreFooterImages/5.jpeg';
+import pic6 from'./PreFooterImages/6.jpg';
 
 
 
@@ -10,12 +16,13 @@ const PreFooter = () => {
           return Math.floor(Math.random() * (5 - 0 + 1)) + 0;
         }
     const imageArray = [
-        'http://www.lemon-grass.ru/files/bg/2.jpg',
-        'http://www.lemon-grass.ru/files/bg/3.jpg',
-        'https://cdn.pixabay.com/photo/2015/03/31/04/07/texture-700516_960_720.jpg',
-        'https://cdn.pixabay.com/photo/2017/11/12/10/44/purple-2942105_960_720.jpg',
-        'https://static.pexels.com/photos/236028/pexels-photo-236028.jpeg',
-        'https://c1.staticflickr.com/4/3743/10862732055_d7ce171a71_b.jpg'
+        pic2,
+        pic3,
+        pic4,
+        pic4,
+        pic5,
+        pic6,
+        pic1
     ]
 
     return (

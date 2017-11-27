@@ -47,8 +47,8 @@ class Details extends Component {
             </div>
               <div className="details-card">
                <h1>{product.name}</h1>
-               {product.description}
-               {product.price? `$${product.price}`:''}
+               <div>{product.description}</div>
+              <div> {product.price? `$${product.price}`:''}</div>
               <AddToCart product={product}/>
               </div>
               

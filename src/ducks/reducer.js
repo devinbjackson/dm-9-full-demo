@@ -5,6 +5,7 @@ const LOGIN_USER = "LOGIN_USER";
 const POST_CART = "POST_CART";
 const GET_CART = "GET_CART";
 const DESTROY_CART = "DESTROY_CART";
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 // Action Creators
 export function requestUser() {
@@ -18,6 +19,20 @@ export function destroyCart(){
   return {
     type: DESTROY_CART,
     payload: []
+  }
+}
+
+export function removeFromCart(id){
+  return {
+    type: REMOVE_FROM_CART,
+    payload: axios
+    .delete(`/api/cart/${id}`)
+    .then(function(response) {
+      return response.data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
   }
 }
 
@@ -89,6 +104,13 @@ export default function reducer(state = initialState, action) {
         cart: action.payload
       });
 
+    case REMOVE_FROM_CART + "_PENDING":
+      return Object.assign({}, state, { isLoading: true });
+    case REMOVE_FROM_CART + "_FULLFILLED":
+      return Object.assign({}, state, {
+        isLoading: false,
+        cart: action.payload
+      });
 
     case LOGIN_USER:
       return Object.assign({}, state, { logged: action.payload });

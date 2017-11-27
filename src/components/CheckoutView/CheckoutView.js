@@ -185,6 +185,37 @@ class CheckoutView extends Component {
 
         }, 0):0;
 
+        const itemsInCart = [];
+
+        for (let i = 0; i < this.props.cart.length; i++) {
+          itemsInCart.push(
+           
+
+              <Link to={`/details/${this.props.cart[i].product_id}`}>
+                <div className="sides">
+                  <div className="left-side">
+                    <img
+                      style={{ width: "50px", height: "50px" }}
+                      src={`${this.props.cart[i].image_url}`}
+                    />
+                  </div>
+                  <div
+                    className="right-side"
+                    style={{
+                      display: "flex",
+                      flexDirection: "column"
+                    }}
+                  >
+                    <div>{`${this.props.cart[i].name}`}</div>
+                    <div>{` - $${this.props.cart[i].price}`}</div>
+                  </div>
+                </div>
+              </Link>
+
+    
+          );
+        }
+
         return(
             <div id="checkout_view_whole">
       <form>
@@ -254,7 +285,10 @@ class CheckoutView extends Component {
             name={'Payment'}
             description={'Powered By Stripe'}
             amount={total}
-           /> 
+           />
+           <div style={{backgroundColor: 'black', width: '50%', paddingTop: '100px'}}>
+            {itemsInCart}
+           </div>   
           </div>
       
         );
