@@ -9,6 +9,7 @@ import store from "./store";
 import "./index.css";
 import App from "./components/App/App";
 import registerServiceWorker from "./registerServiceWorker";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 injectTapEventPlugin();
 
@@ -17,8 +18,10 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
     <MuiThemeProvider>
+      <ScrollToTop>
       <App />
-      </MuiThemeProvider>
+      </ScrollToTop>
+    </MuiThemeProvider>
     </BrowserRouter>
   </Provider>,
   document.getElementById("root")

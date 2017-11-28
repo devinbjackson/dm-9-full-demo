@@ -7,6 +7,7 @@ import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import RaisedButton from "material-ui/RaisedButton";
 import Badge from "material-ui/Badge";
+import AppBar from 'material-ui/AppBar';
 
 import cart_img from "./cart-logo.svg";
 import { requestUser, refreshCart, removeFromCart } from "../../ducks/reducer";
@@ -18,12 +19,13 @@ class NavBar extends Component {
     super(props);
 
     this.handleLogin = this.handleLogin.bind(this);
-    this.state = { open: false };
+    this.state = { leftOpen: false ,
+    rightOpen:false};
   }
 
-  handleToggle = () => this.setState({ open: !this.state.open });
+  handleToggle = () => this.setState({ rightOpen: !this.state.rightOpen });
 
-  handleClose = () => {this.setState({ open: false })};
+  handleClose = () => {this.setState({ leftOpen: false ,rightOpen: false})};
 
   handleLogin() {
     window.location.href = "http://localhost:3001/login";
@@ -36,7 +38,9 @@ class NavBar extends Component {
     //  });
     this.props.requestUser();
     this.props.refreshCart();
-    this.setState({ open: false });
+    this.setState({ rightOpen: false,
+    leftOpen: false });
+    console.log("component did munt length check",this.props.cart.length)
   }
   
   handleLogout() {
@@ -44,6 +48,7 @@ class NavBar extends Component {
   }
 
   render() {
+
     const guy = this.props.user.authid;
     const logInText = function() {
       if (guy) {
@@ -103,7 +108,9 @@ class NavBar extends Component {
       );
     }
     return (
-      <div className="nav-whole">
+      <div className='navBar-whole'>
+      <div className='nav-whole'>
+      
         <Link to="/">
           <div className="nav-logo">
             <img
@@ -177,7 +184,7 @@ class NavBar extends Component {
           docked={false}
           width={400}
           openSecondary={true}
-          open={this.state.open}
+          open={this.state.rightOpen}
           onRequestChange={open => this.setState({ open })}
         >
           {this.props.cart.length ? items : "Your cart is empty"}
@@ -201,7 +208,33 @@ class NavBar extends Component {
             />
           )}
         </Drawer>
+
+        
       </div>
+      <div className="small-nav">
+        <AppBar
+        title="Title"
+        onLeftIconButtonTouchTap={()=> this.setState({leftOpen: true})}
+        />
+        <Drawer
+          docked={false}
+          width={'100%'}
+          open={this.state.leftOpen}
+          onRequestChange={(open) => this.setState({open})}
+        > 
+          <Link to="/"><MenuItem onClick={this.handleClose}>HOME</MenuItem></Link>
+          <div className="section-line"></div> 
+          <Link to="/men"><MenuItem onClick={this.handleClose}>MEN</MenuItem></Link>
+          <div className="section-line"></div> 
+          <Link to="/women"><MenuItem onClick={this.handleClose}>WOMEN</MenuItem></Link>
+          <div className="section-line"></div> 
+          <Link to="/accessories"><MenuItem onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
+          <div className="section-line"></div> 
+        </Drawer>
+
+
+      </div>
+    </div>
     );
   }
 }

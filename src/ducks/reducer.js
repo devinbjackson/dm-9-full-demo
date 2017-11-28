@@ -28,6 +28,7 @@ export function removeFromCart(id){
     payload: axios
     .delete(`/api/cart/${id}`)
     .then(function(response) {
+      console.log("remove from cart",response.data)
       return response.data;
     })
     .catch(function(error) {
@@ -99,18 +100,21 @@ export default function reducer(state = initialState, action) {
     case POST_CART + "_PENDING":
       return Object.assign({}, state, { isLoading: true });
     case POST_CART + "_FULFILLED":
+    console.log("post cart", action.payload)
       return Object.assign({}, state, {
         isLoading: false,
         cart: action.payload
       });
 
     case REMOVE_FROM_CART + "_PENDING":
-      return Object.assign({}, state, { isLoading: true });
-    case REMOVE_FROM_CART + "_FULLFILLED":
+      console.log("in the remove case",action.payload)
+    return Object.assign({}, state, { isLoading: true });
+    case REMOVE_FROM_CART + "_FULFILLED":
       return Object.assign({}, state, {
         isLoading: false,
         cart: action.payload
       });
+
 
     case LOGIN_USER:
       return Object.assign({}, state, { logged: action.payload });

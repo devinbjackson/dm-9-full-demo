@@ -28,7 +28,7 @@ class CheckoutView extends Component {
         cityError: '',
         stateNameError: '',
         zipError: '',
-        paying: false
+        paying: 'false'
     }
     this.change = this.change.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
@@ -40,21 +40,35 @@ class CheckoutView extends Component {
     // this.props.onSubmit(this.state);
     const err = this.validate();
     if(!err){
+    axios.post('/api/shippingInfo', {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      streetAddress: this.state.streetAddress,
+      apt: this.state.apt,
+      city: this.state.city,
+      stateName: this.state.stateName,
+      zip: this.state.zip,
+    }).then(function(response) {
+      return response.data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
     this.setState({
-        firstName: '',
-        lastName: '',
-        streetAddress: '',
-        apt: '',
-        city: '',
-        stateName: '',
-        zip: '',
+        // firstName: '',
+        // lastName: '',
+        // streetAddress: '',
+        // apt: '',
+        // city: '',
+        // stateName: '',
+        // zip: '',
         firstNameError: '',
         lastNameError: '',
         streetAddressError: '',
         cityError: '',
         stateNameError: '',
         zipError: '',
-        paying: false
+        paying: 'true'
     });
   }
 }
@@ -218,6 +232,7 @@ class CheckoutView extends Component {
 
         return(
             <div id="checkout_view_whole">
+            <div>
       <form>
         <TextField
       name="firstName"
@@ -279,13 +294,20 @@ class CheckoutView extends Component {
       >
       {items}
       </SelectField>
-        <RaisedButton label="PLACE ORDER" onClick={e => this.onSubmit(e)} primary />
-          </form>
-          <Checkout
+        <RaisedButton label="SUBMIT & PAYMENT" onClick={e => this.onSubmit(e)} primary />
+        </form>
+
+        <div className={`paying${this.state.paying}`}>
+        hi hi hi IM NOT INVISIBLE
+        <Checkout
             name={'Payment'}
             description={'Powered By Stripe'}
             amount={total}
            />
+        </div>
+
+        </div>
+          
            <div style={{backgroundColor: 'black', width: '50%', paddingTop: '100px'}}>
             {itemsInCart}
            </div>   

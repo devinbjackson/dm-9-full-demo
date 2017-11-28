@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 
+import SubHeader from '.././SubHeader/SubHeader'
 import DemoCarousel from "../DemoCarousel/DemoCarousel"
 import FillerCard from '../FillerCard/FillerCard';
 import { requestUser } from "../../ducks/reducer";
@@ -23,6 +24,7 @@ class LandingPage extends Component {
     return (
       <div className="landing-whole">
         <DemoCarousel className="hundovh"/>
+        <SubHeader/>
         
           {this.props.user.name && (
             <div>

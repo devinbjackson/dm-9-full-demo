@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import FlatButton from 'material-ui/FlatButton';
 
 import './FillerCard.css';
+import { relative } from 'path';
 
 class FillerCard extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class FillerCard extends Component {
            {item.name}
            </div>
            </div>
-           </Link>)
+           </Link> )
         })
 
         return (
@@ -50,12 +51,7 @@ class FillerCard extends Component {
                }
                </div>
                     
-                     <div className="filler-list"> {list.length % 2 === 0 ? list : (list, 
-                        <div className="list-item blank">
-                            <div className="list-image">
-                            </div>
-                        </div>
-                    )}</div>
+                     <div className="filler-list"> {list} </div>
                     
 
             <Link to={`/${this.props.name}`}>

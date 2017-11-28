@@ -6,10 +6,22 @@
     background: darkgoldenrod
 }
 
-#checkout_view_whole form{  
+#checkout_view_whole >div >form{  
     margin-top: 150px;
     display: flex;
     flex-direction: column;
     width: 50%;
 
+}
+
+.payingtrue{
+    height: 100px;
+    width: 100px;
+    background-color: pink;
+}
+
+.payingfalse{
+    height: 400px;
+    width: 400px;
+    display: none;
 }
