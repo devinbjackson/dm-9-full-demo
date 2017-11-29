@@ -43,7 +43,7 @@ class Details extends Component {
            <a onClick={()=>this.changePicture(product.image4_url)}>{product.image4_url?<img style={{width: "100%", height: "15%", objectFit: "contain"}}  src={product.image4_url}/>:''}</a>
            </div>
            <div className="detail-image-card">
-            <img style={{width: "100%", height: "100%", objectFit: "cover"}}  src={this.state.currentImageUrl}/>
+            <div style={{width: "100%", height: "100%", backgroundPosition: 'center',backgroundSize: "cover",backgroundColor:'rgb(238, 238, 238)', backgroundImage: `url(${this.state.currentImageUrl})`}}/>
             </div>
               <div className="details-card">
                <h1>{product.name}</h1>

@@ -12,26 +12,37 @@
     
 }
 
+.menu-left-item{
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
 a { text-decoration: none; }
 
 a:visited { text-decoration: none; 
 color: white}
 a:hover { text-decoration: none; 
-cursor: pointer}
+cursor: pointer;
+color: rgb(191, 71, 71)}
 a:focus { text-decoration: none; }
 a:hover, a:active { text-decoration: none; }
 
 .nav-whole .nav-logo{
-    margin-left: 1px;
+    margin-left: 20px;
 }
 
 .nav-signIn-cart img{
     height: 30px;
     width: 30px;
+    
 }
 
 .nav-signIn-cart {
     margin-top: -28px;
+    margin-right: -50px;
 }
 #cart-badge{
     margin-bottom: 0;

@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import Drawer from "material-ui/Drawer";
 import MenuItem from "material-ui/MenuItem";
 import RaisedButton from "material-ui/RaisedButton";
+import IconButton from 'material-ui/IconButton'
 import Badge from "material-ui/Badge";
 import AppBar from 'material-ui/AppBar';
 
@@ -20,7 +21,11 @@ class NavBar extends Component {
 
     this.handleLogin = this.handleLogin.bind(this);
     this.state = { leftOpen: false ,
-    rightOpen:false};
+    rightOpen: false};
+
+    this.handleClose = this.handleClose.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handleRightToggle = this.handleRightToggle.bind(this)
   }
 
   handleToggle = () => this.setState({ rightOpen: !this.state.rightOpen });
@@ -30,7 +35,11 @@ class NavBar extends Component {
   handleLogin() {
     window.location.href = "http://localhost:3001/login";
   }
-  
+
+  handleRightToggle() {
+    this.setState({rightOpen: this.state.rightOpen})
+  } 
+
   componentDidMount() {
     // axios.get("/api/me").then(response => {
     //    if (!response.data) this.setState({ user: null });
@@ -48,7 +57,11 @@ class NavBar extends Component {
   }
 
   render() {
+    const total = this.props.cart.length ? this.props.cart.reduce(function(acc, item){
+      
+      return acc + parseFloat(item.price);
 
+    }, 0).toFixed(2):0;
     const guy = this.props.user.authid;
     const logInText = function() {
       if (guy) {
@@ -115,7 +128,7 @@ class NavBar extends Component {
           <div className="nav-logo">
             <img
               style={{ width: "100px" }}
-              src="https://cdn.shopify.com/s/files/1/1204/3438/files/Bon-Tot-Edinburgh-Logo_57786928-f63e-4872-be6a-603a79953edd_600x.png?v=1505911147"
+              src="https://shopual.com/wp-content/uploads/2017/02/UAL-logo-white.png"
             />
           </div>
           
@@ -185,9 +198,21 @@ class NavBar extends Component {
           width={400}
           openSecondary={true}
           open={this.state.rightOpen}
-          onRequestChange={open => this.setState({ open })}
+          onRequestChange={open => this.setState({rightOpen: open})}
         >
-          {this.props.cart.length ? items : "Your cart is empty"}
+          {this.props.cart.length ? items : 
+          <MenuItem style={{
+            height:'100vh',
+            fontSize: '3em',
+            display: 'flex',
+            flexDirection: 'column',
+            color: 'white',
+            width: '400px',
+            justifyContent: 'center',
+            alignContent: 'center',
+            flexWrap: 'wrap' }} onClick={this.handleClose}><div>YOUR</div><div>CART</div><div>IS</div><div>EMPTY</div></MenuItem>
+          }
+          
           {this.props.cart.length ? (
             <Link to="/checkout">
               {" "}
@@ -195,43 +220,77 @@ class NavBar extends Component {
                 style={{bottom: 0, }}
                 onClick={this.handleClose}
                 primary
-                label="CHECK OUT"
+                label={`$${total} - CHECK OUT`}
                 fullWidth={true}
               />
             </Link>
           ) : (
-            <RaisedButton
-              onClick={this.handleClose}
-              primary
-              label="SHOP"
-              fullWidth={true}
-            />
+            ''
           )}
         </Drawer>
-
         
       </div>
       <div className="small-nav">
+
+
         <AppBar
         title="Title"
         onLeftIconButtonTouchTap={()=> this.setState({leftOpen: true})}
+        iconElementRight={<IconButton><img id="just-cart" src={cart_img} onClick={this.handleToggle} /></IconButton>}
         />
+
+        
         <Drawer
           docked={false}
           width={'100%'}
           open={this.state.leftOpen}
-          onRequestChange={(open) => this.setState({open})}
         > 
-          <Link to="/"><MenuItem onClick={this.handleClose}>HOME</MenuItem></Link>
+          <Link to="/"><MenuItem className="menu-left-item" onClick={this.handleClose}>HOME</MenuItem></Link>
           <div className="section-line"></div> 
-          <Link to="/men"><MenuItem onClick={this.handleClose}>MEN</MenuItem></Link>
+          <Link to="/men"><MenuItem className="menu-left-item" onClick={this.handleClose}>MEN</MenuItem></Link>
           <div className="section-line"></div> 
-          <Link to="/women"><MenuItem onClick={this.handleClose}>WOMEN</MenuItem></Link>
+          <Link to="/women"><MenuItem className="menu-left-item" onClick={this.handleClose}>WOMEN</MenuItem></Link>
           <div className="section-line"></div> 
-          <Link to="/accessories"><MenuItem onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
+          <Link to="/accessories"><MenuItem className="menu-left-item" onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
           <div className="section-line"></div> 
         </Drawer>
 
+        <Drawer 
+          containerStyle={{backgroundColor: "grey"}}
+          docked={false}
+          width={'100%'}
+          openSecondary={true}
+          open={this.state.rightOpen}
+          onRequestChange={open => this.setState({rightOpen: open})}
+        >
+          {this.props.cart.length ? items : 
+          <MenuItem style={{
+            height:'100vh',
+            fontSize: '3em',
+            display: 'flex',
+            flexDirection: 'column',
+            color: 'white',
+            width: '100vw',
+            justifyContent: 'center',
+            alignContent: 'center',
+            flexWrap: 'wrap' }} onClick={this.handleClose}><div>YOUR</div><div>CART</div><div>IS</div><div>EMPTY</div></MenuItem>
+          }
+          
+          {this.props.cart.length ? (
+            <Link to="/checkout">
+              {" "}
+              <RaisedButton
+                style={{bottom: 0, }}
+                onClick={this.handleClose}
+                primary
+                label={`$${total} - CHECK OUT`}
+                fullWidth={true}
+              />
+            </Link>
+          ) : (
+            ''
+          )}
+        </Drawer>
 
       </div>
     </div>

@@ -8,7 +8,7 @@
 
 
 
-    .filler-list{
+ .filler-list{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -17,10 +17,15 @@
     max-width: 853px;
 }
 
+.black-text{
+    color: black;
+}
  
 
 .list-image {
-    display: inline-block;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
     width: 200px;
     height:250px;
     margin: 5px;

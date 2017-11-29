@@ -5,6 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import FlatButton from 'material-ui/FlatButton';
 
+import FavoriteHeart from '.././FavoriteHeart/FavoriteHeart'
 import './FillerCard.css';
 import { relative } from 'path';
 
@@ -31,13 +32,14 @@ class FillerCard extends Component {
          
          this.state.list.map(function(item){
          return (<Link to={`/details/${item.product_id}`}>
-          <div className="list-item">
+          <a className="black-text list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
+           <FavoriteHeart/>
            </div>
            <div className="filler_image_name">
            {item.name}
            </div>
-           </div>
+           </a>
            </Link> )
         })
 

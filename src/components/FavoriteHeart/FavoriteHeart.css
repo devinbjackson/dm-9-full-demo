@@ -1,0 +1,10 @@
+.favorite-heart-whole{
+    margin: 10px 10px 0 0;
+    color: grey;
+    z-index: 2;
+}
+
+.favorite-heart-whole :hover{
+    color:rgb(191, 71, 71);
+    z-index: 2;
+}

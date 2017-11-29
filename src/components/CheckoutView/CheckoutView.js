@@ -117,14 +117,15 @@ class CheckoutView extends Component {
             ...this.state,
             ...errors
           });
-      
           return isError;
     }
 
     change = e => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            paying: `${!this.validate}`      
         })
+        console.log(this.state.paying)
     }
     handleChange = (event, index, stateName) => {
         this.setState({stateName});
@@ -194,11 +195,10 @@ class CheckoutView extends Component {
           items.push(<MenuItem value={stateList[i]} key={i} primaryText={`${stateList[i]}`} />);
         }
         const total = this.props.cart.length ? this.props.cart.reduce(function(acc, item){
-            
-            return acc + parseFloat(item.price);
-
-        }, 0):0;
-
+          
+          return acc + parseFloat(item.price);
+    
+        }, 0).toFixed(2):0;
         const itemsInCart = [];
 
         for (let i = 0; i < this.props.cart.length; i++) {
@@ -208,10 +208,7 @@ class CheckoutView extends Component {
               <Link to={`/details/${this.props.cart[i].product_id}`}>
                 <div className="sides">
                   <div className="left-side">
-                    <img
-                      style={{ width: "50px", height: "50px" }}
-                      src={`${this.props.cart[i].image_url}`}
-                    />
+                    <img src={`${this.props.cart[i].image_url}`} />
                   </div>
                   <div
                     className="right-side"
@@ -232,7 +229,7 @@ class CheckoutView extends Component {
 
         return(
             <div id="checkout_view_whole">
-            <div>
+            <div id="checkout-left-side">
       <form>
         <TextField
       name="firstName"
@@ -284,7 +281,7 @@ class CheckoutView extends Component {
       errorText={this.state.zipError}
         />
         <SelectField
-        name="stateName"
+          name="stateName"
         floatingLabelText="State"
         value={this.state.stateName}
         onChange={this.handleChange}
@@ -294,22 +291,25 @@ class CheckoutView extends Component {
       >
       {items}
       </SelectField>
-        <RaisedButton label="SUBMIT & PAYMENT" onClick={e => this.onSubmit(e)} primary />
+        
+        <div className="rb"><RaisedButton className="submit-pay-button" label="CHOOSE PAYMENT" onClick={e => this.onSubmit(e)} primary /></div>
         </form>
 
+        
         <div className={`paying${this.state.paying}`}>
-        hi hi hi IM NOT INVISIBLE
         <Checkout
             name={'Payment'}
             description={'Powered By Stripe'}
             amount={total}
            />
         </div>
-
         </div>
           
-           <div style={{backgroundColor: 'black', width: '50%', paddingTop: '100px'}}>
+           <div id='checkout-right-side'>
+           <div className="all-cart-items">
             {itemsInCart}
+          </div>
+          {total? <h1>Total: ${total}</h1>:''}
            </div>   
           </div>
       

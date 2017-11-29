@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { connect } from "react-redux";
 
-import DemoCarousel from "../DemoCarousel/DemoCarousel"
+import FavoriteHeart from '.././FavoriteHeart/FavoriteHeart'
+
 
 import './WomenPage.css';
 
@@ -27,13 +28,14 @@ class WomenPage extends Component {
     const list = 
     
     this.state.list.map(function(item){
-    return (<Link to={`/details/${item.product_id}`}><div className="list-item">
+    return (<Link to={`/details/${item.product_id}`}><a className="black-text list-item">
            <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
+           <FavoriteHeart/>
            </div>
            <div className="filler_image_name">
            {item.name}
            </div>
-           </div>
+           </a>
            </Link>)
    })
     return (

@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="contact-section-items">Call: 1 800 445 8904</div>
         </div>
          <div className="nav-logo">
-         <img style={{width: "100px"}} src="https://cdn.shopify.com/s/files/1/1204/3438/files/Bon-Tot-Edinburgh-Logo_57786928-f63e-4872-be6a-603a79953edd_600x.png?v=1505911147" alt="logo"/>
+         <img style={{width: "100px"}} src="https://shopual.com/wp-content/uploads/2017/02/UAL-logo-white.png" alt="logo"/>
                TITLE
          </div>
         </div>

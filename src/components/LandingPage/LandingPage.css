@@ -2,5 +2,13 @@
     height: 1px;
     background: linear-gradient(left, rgba(0, 0, 0, 0.7), white, rgba(0, 0, 0, 0.7) );
     width:100%;
+    
 }
 
+.landing-whole{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}

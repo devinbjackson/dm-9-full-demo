@@ -5,13 +5,14 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+    flex-wrap: wrap;
 
 }
+
 
 .details-card{
     height: 60vh;
     width: 30%;
-
     margin-top: 50px;
     margin-left: 20px;
     display: flex;
@@ -57,7 +58,7 @@
     .details-whole{
         display: flex;
         height: 160vh;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         align-content: center;
@@ -70,7 +71,7 @@
         margin-right: 0px;
     }
     .details-card{
-        height: 60vh;
+        height: 50vh;
         width:90%;
         margin-top: 50px;
         margin-left: 20px;
