@@ -3,9 +3,12 @@ import axios from "axios";
 const REQ_USER = "REQ_USER";
 const LOGIN_USER = "LOGIN_USER";
 const POST_CART = "POST_CART";
+const POST_FAV = "POST_FAV";
 const GET_CART = "GET_CART";
+const GET_FAVES = "GET_FAVES";
 const DESTROY_CART = "DESTROY_CART";
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const REMOVE_FROM_FAVES = 'REMOVE_FROM_FAVES';
 
 // Action Creators
 export function requestUser() {
@@ -29,6 +32,21 @@ export function removeFromCart(id){
     .delete(`/api/cart/${id}`)
     .then(function(response) {
       console.log("remove from cart",response.data)
+      return response.data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
+  }
+}
+
+export function removeFromFaves(id){
+  return {
+    type: REMOVE_FROM_FAVES,
+    payload: axios
+    .delete(`/api/faves/${id}`)
+    .then(function(response) {
+      console.log("remove from faves",response.data)
       return response.data;
     })
     .catch(function(error) {
@@ -70,11 +88,43 @@ export function addToCart(pro000duct) {
   };
 }
 
+export function addToFaves(prEduct) {
+  
+  return {
+    type: POST_FAV,
+    payload: axios
+      .post("/api/faves", 
+        {id: prEduct}
+      )
+      .then(function(response) {
+        console.log( "faves from session" ,response.data)
+        return response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+  };
+}
+
 export function refreshCart() {
   return {
     type: GET_CART,
     payload: axios
       .get("/api/cart")
+      .then(function(response) {
+        return response.data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+  };
+}
+
+export function refreshFaves() {
+  return {
+    type: GET_FAVES,
+    payload: axios
+      .get("/api/faves")
       .then(function(response) {
         return response.data;
       })
@@ -90,7 +140,8 @@ const initialState = {
   user: {},
   logged: "LOG IN",
   cart: [],
-  isLoading: false
+  isLoading: false,
+  faves: []
 };
 
 // Reducer
@@ -106,6 +157,14 @@ export default function reducer(state = initialState, action) {
         cart: action.payload
       });
 
+    case POST_FAV + "_PENDING":
+      return Object.assign({}, state, { isLoading: true });
+    case POST_FAV + "_FULFILLED":
+      return Object.assign({}, state, {
+        isLoading: false,
+        faves: action.payload
+      });  
+
     case REMOVE_FROM_CART + "_PENDING":
       console.log("in the remove case",action.payload)
     return Object.assign({}, state, { isLoading: true });
@@ -114,6 +173,15 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         cart: action.payload
       });
+
+    case REMOVE_FROM_FAVES + "_PENDING":
+    return Object.assign({}, state, { isLoading: true });
+    case REMOVE_FROM_FAVES + "_FULFILLED":
+    console.log("in the remove favesss case", action.payload)
+    return Object.assign({}, state, {
+        isLoading: false,
+        faves: action.payload
+      });  
 
 
     case LOGIN_USER:
@@ -127,6 +195,15 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         cart: action.payload
       });
+      case GET_FAVES + "_PENDING":
+      return Object.assign({}, state,
+         { isLoading: true });
+    case GET_FAVES + "_FULFILLED":
+      return Object.assign({}, state, {
+        isLoading: false,
+        faves: action.payload
+      });
+
 
     //   case DESTROY_CART + "_PENDING":
     //   return Object.assign({}, state)

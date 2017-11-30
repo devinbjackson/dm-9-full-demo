@@ -13,12 +13,11 @@
 }
 
 .menu-left-item{
-    height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+    font-size: 1.7em !important
 }
+
+
+
 
 a { text-decoration: none; }
 
@@ -50,17 +49,48 @@ a:hover, a:active { text-decoration: none; }
     bottom: -8px;
 }
 
+.cart-drawer >div >div >div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8px;
+    margin-top: -30px;
+    margin-left: 20px;
+}
+
+
+.cart-drawer >div >div{
+display: flex;
+justify-content: center;
+align-items: center;
+}
 .left-side{
     float: left;
-    width:30%
+    width:30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .right-side{
     float: right;
-    width:70%
+    width:70%;
+    margin-left: 20px;
+
+}
+.right-side div{
+    float: right;
+    display: flex;
+    text-overflow: ellipsis;
+    justify-content: flex-start;
+    max-height: 3.6em;
+    word-wrap: normal;
+    width: 100%;
+    font-size: .9em !important; 
+    text-overflow: 
 }
 .sides {
     display:flex;
-
+    max-width:240px;
 }
 
 @font-face{
@@ -82,13 +112,6 @@ a:hover, a:active { text-decoration: none; }
     direction: ltr;
 }
 
-.cart-drawer{
-    color: black;
-}
-.cart-drawer:visited{
-    text-decoration: none;
-    color: black;
-}
 
 #nav-signIn-noBadge{
     margin-bottom: -12px;

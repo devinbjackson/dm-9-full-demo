@@ -48,8 +48,7 @@ class NavBar extends Component {
     this.props.requestUser();
     this.props.refreshCart();
     this.setState({ rightOpen: false,
-    leftOpen: false });
-    console.log("component did munt length check",this.props.cart.length)
+                    leftOpen: false });
   }
   
   handleLogout() {
@@ -82,7 +81,7 @@ class NavBar extends Component {
 
 
         <MenuItem
-        className="cart-drawer"
+          className="cart-drawer"
           onClick={this.handleClose}
           value={this.props.cart[i].product_id}
           key={i}
@@ -91,7 +90,7 @@ class NavBar extends Component {
             <div className="sides">
               <div className="left-side">
                 <img
-                  style={{ width: "50px", height: "50px" }}
+                  style={{ width: "80px", height: "90px" }}
                   src={`${this.props.cart[i].image_url}`}
                 />
               </div>
@@ -100,19 +99,21 @@ class NavBar extends Component {
                 style={{
                   display: "flex",
                   flexDirection: "column"
+
                 }}
               >
                 <div>{`${this.props.cart[i].name}`}</div>
-                <div>{` - $${this.props.cart[i].price}`}</div>
-                <RaisedButton
-                onClick={()=>this.props.removeFromCart(this.props.cart[i].product_id)}
-                primary
-                label="REMOVE"
-                fullWidth={true}
-              />
+                <div>{`$${this.props.cart[i].price}`}</div>
+                
               </div>
             </div>
           </Link>
+          <RaisedButton
+                onClick={()=>this.props.removeFromCart(this.props.cart[i].product_id)}
+                primary
+                label="REMOVE"
+                fullWidth={false}
+              />
         </MenuItem>
 
 
@@ -244,7 +245,9 @@ class NavBar extends Component {
           docked={false}
           width={'100%'}
           open={this.state.leftOpen}
+          containerStyle={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}
         > 
+          <div className="section-line"></div> 
           <Link to="/"><MenuItem className="menu-left-item" onClick={this.handleClose}>HOME</MenuItem></Link>
           <div className="section-line"></div> 
           <Link to="/men"><MenuItem className="menu-left-item" onClick={this.handleClose}>MEN</MenuItem></Link>
@@ -252,6 +255,8 @@ class NavBar extends Component {
           <Link to="/women"><MenuItem className="menu-left-item" onClick={this.handleClose}>WOMEN</MenuItem></Link>
           <div className="section-line"></div> 
           <Link to="/accessories"><MenuItem className="menu-left-item" onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
+          <div className="section-line"></div> 
+          <MenuItem className="menu-left-item back-item" onClick={this.handleClose}><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>{`  BACK`}</MenuItem>
           <div className="section-line"></div> 
         </Drawer>
 

@@ -1,0 +1,5 @@
+.carousel-image{
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}

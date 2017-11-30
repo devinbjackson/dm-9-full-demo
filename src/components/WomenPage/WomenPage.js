@@ -28,15 +28,18 @@ class WomenPage extends Component {
     const list = 
     
     this.state.list.map(function(item){
-    return (<Link to={`/details/${item.product_id}`}><a className="black-text list-item">
-           <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
-           <FavoriteHeart/>
-           </div>
-           <div className="filler_image_name">
-           {item.name}
-           </div>
-           </a>
-           </Link>)
+    return (<div className="list-item-whole">
+    <FavoriteHeart product={item}/>
+    <Link to={`/details/${item.product_id}`}>
+     <a className="black-text list-item">
+      <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
+      </div>
+      <div className="filler_image_name">
+      {item.name}
+      </div>
+      </a>
+      </Link>
+       </div>)
    })
     return (
       <div className="productPage-whole">

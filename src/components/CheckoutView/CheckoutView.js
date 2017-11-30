@@ -8,6 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+import {removeFromCart} from '../../ducks/reducer'
 import Checkout from '../../Checkout'
 import './CheckoutView.css';
 
@@ -204,7 +205,7 @@ class CheckoutView extends Component {
         for (let i = 0; i < this.props.cart.length; i++) {
           itemsInCart.push(
            
-
+              <div>
               <Link to={`/details/${this.props.cart[i].product_id}`}>
                 <div className="sides">
                   <div className="left-side">
@@ -222,6 +223,13 @@ class CheckoutView extends Component {
                   </div>
                 </div>
               </Link>
+              <RaisedButton
+              onClick={()=>this.props.removeFromCart(this.props.cart[i].product_id)}
+              primary
+              label="REMOVE"
+              fullWidth={false}
+            />
+            </div>
 
     
           );
@@ -320,4 +328,4 @@ class CheckoutView extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps)(CheckoutView);
+export default connect(mapStateToProps, {removeFromCart})(CheckoutView);

@@ -14,6 +14,7 @@ import "./App.css";
 import NavBar from '../NavBar/NavBar';
 import PreFooter from '../PreFooter/PreFooter'
 import Footer from '../Footer/Footer';
+import UserPage from '../UserPage/UserPage';
 
 
 class App extends Component {
@@ -23,7 +24,8 @@ class App extends Component {
     
     return (<div className="App">
       <NavBar /> 
-                {router}
+              {router}
+              <UserPage/>
       <PreFooter/>
       <Footer/>
     </div>

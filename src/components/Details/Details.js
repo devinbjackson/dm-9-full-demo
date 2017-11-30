@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import { connect } from "react-redux";
 
+import FavoriteHeart from '../FavoriteHeart/FavoriteHeart';
 import AddToCart from "../AddToCart/AddToCart";
 import './Details.css';
 
@@ -43,12 +44,20 @@ class Details extends Component {
            <a onClick={()=>this.changePicture(product.image4_url)}>{product.image4_url?<img style={{width: "100%", height: "15%", objectFit: "contain"}}  src={product.image4_url}/>:''}</a>
            </div>
            <div className="detail-image-card">
+           <div style={{display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        position: 'relative',
+                        height:'100%'}}>
+            <FavoriteHeart product={this.state.product}/>
             <div style={{width: "100%", height: "100%", backgroundPosition: 'center',backgroundSize: "cover",backgroundColor:'rgb(238, 238, 238)', backgroundImage: `url(${this.state.currentImageUrl})`}}/>
+            </div>
             </div>
               <div className="details-card">
                <h1>{product.name}</h1>
                <div>{product.description}</div>
               <div> {product.price? `$${product.price}`:''}</div>
+              
               <AddToCart product={product}/>
               </div>
               

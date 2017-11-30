@@ -1,0 +1,51 @@
+.user-page-whole{
+    height: 120vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}
+.user-page-sides{
+display: flex;
+justify-content: center;
+align-content: center;
+align-items: center;
+
+}
+.user-page-left{
+    margin-right: 20px; 
+    background-color: rgb(213, 120, 120);
+    height: 500px;
+    width: 40vw;
+    text-align: left;
+}
+
+.user-page-right{
+    margin-left: 20px; 
+    background-color: rgb(128, 128, 201);
+    height: 500px;
+    width: 40vw;
+    text-align: left;
+}
+
+.orders{
+    max-width: 400px
+}
+
+.divider{
+    height: 400px;
+    width: 10%;
+    display: flex;
+    overflow: hidden;
+    align-content: space-around;
+    justify-content: space-around;
+}
+
+.divider .bar{
+    background-color: black;
+    height: 400px;
+    width: 2px;
+    margin: -15px;
+}

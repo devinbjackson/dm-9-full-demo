@@ -6,11 +6,11 @@ const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
 
-const { secret } = require("../config").session;
-const { domain, clientID, clientSecret } = require("../config.js").auth0;
+const { secret } = require("./config").session;
+const { domain, clientID, clientSecret } = require("./config.js").auth0;
 
 const port = 3001;
-const { connectionString } = require("../config").massive;
+const { connectionString } = require("./config").massive;
 const app = express();
 
 //app.use(express.static(`${__dirname}/build`));
@@ -34,6 +34,7 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 app.use((req, res, next) => {
  count+=1;
   next();
@@ -143,7 +144,9 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
 });
 
 app.get("/api/me", function(req, res) {
+
   if (!req.user) return res.status(404);
+
   res.status(200).json(req.user);
 });
 
@@ -151,6 +154,13 @@ app.get("/api/cart", (req, res, next) => {
   if (!req.session.cart) req.session.cart = [];
   res.json(req.session.cart);
 });
+
+app.get("/api/faves", (req, res, next) => {
+  if (!req.session.faves) req.session.faves = [];
+  res.json(req.session.faves);
+});
+
+
 
 app.delete("/api/cart/:id", (req, res, next) => {
   const deleteID = req.params.id;
@@ -164,6 +174,33 @@ app.post("/api/cart", (req, res, next) => {
   req.session.cart.push(req.body);
   res.json(req.session.cart);
 });
+
+app.post("/api/faves", (req, res, next) => {
+  if (!req.session.faves) req.session.faves = [];
+  console.log("in fave post", req.body.id)
+  req.session.faves.push(req.body.id);
+  res.json(req.session.faves);
+});
+
+app.delete("/api/faves/:id", (req, res, next) => {
+  const deleteID = req.params.id;
+  console.log("delId", deleteID, typeof deleteID)
+  req.session.faves = req.session.faves.filter(function(x){
+    console.log("x=",x, typeof x);
+    return x != deleteID
+  })
+  res.json(req.session.faves);
+});
+
+app.get("/api/orders/:id", (req, res, next) => {
+  req.app
+  .get("db")
+  .getOrdersByUserId([req.params.id])
+  .then(response => {
+    res.json(response);
+  })
+  .catch(console.log);
+})
 
 app.post("/api/shippingInfo", (req, res, next) => {
   if (!req.session.shippingInfo) req.session.shippingInfo = {};
@@ -196,16 +233,6 @@ app.get("/api/details/:productId", function(req, res) {
   req.app
     .get("db")
     .getProductById([req.params.productId])
-    .then(response => {
-      res.json(response);
-    })
-    .catch(console.log);
-});
-
-app.get("/api/test", (req, res, next) => {
-  req.app
-    .get("db")
-    .getUsers()
     .then(response => {
       res.json(response);
     })
