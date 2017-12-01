@@ -1,30 +1,27 @@
-.favorite-heart-whole{
-    margin: 10px 10px 0 0;
-    color: grey;
-    z-index: 2;
-    position: absolute;
-    right:0
-}
+
 .favorite-heart-whole {
     margin: 10px 10px 0 0;
     color: grey;
-    z-index: 2;
+    z-index: 1;
     position: absolute;
-    right:0
-}
-
-.favorite-heart-whole :hover{
-    color:rgb(191, 71, 71);
-    cursor: pointer;
-    z-index: 2;
-}
-
-.liked{
-    color:rgb(191, 71, 71);
-    cursor: pointer;
-    z-index: 2;
-}
-
-.favorite-heart-whole:before:hover{
+    right:0;
+    top: -14px;
     display: none;
+}
+
+.favorite-heart-whole:hover{
+    color:rgb(191, 71, 71);
+    cursor: pointer;
+    z-index: 1;
+}
+
+.liked {
+    display: block;
+    color:rgb(191, 71, 71);
+}
+
+@media (max-width:768px){
+    .favorite-heart-whole {
+        display: block;
+    }
 }

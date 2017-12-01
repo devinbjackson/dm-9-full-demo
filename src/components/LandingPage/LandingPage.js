@@ -37,6 +37,7 @@ class LandingPage extends Component {
           <FillerCard name="WOMEN"/>
           <div className="section-line"></div>  
           <FillerCard name="ACCESSORIES"/>
+          <div className="section-line"></div> 
       </div>
     );
   }

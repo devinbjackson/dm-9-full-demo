@@ -107,7 +107,7 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
   req.session.purchases = [...req.session.cart];
   const rsc = [...req.session.cart];
   req.app.get("db")
-  .addOrderByShipping([rss.firstName, rss.lastName, rss.streetAddress, rss.apt, rss.city, rss.stateName, rss.zip, total])
+  .addOrderByShipping([rss.firstName, rss.lastName, rss.streetAddress, rss.apt, rss.city, rss.stateName, rss.zip, total, rss.email])
     .then(response => {
 
       const orderId = response[0].order_id;
@@ -144,7 +144,7 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
 });
 
 app.get("/api/me", function(req, res) {
-
+  console.log(req)
   if (!req.user) return res.status(404);
 
   res.status(200).json(req.user);

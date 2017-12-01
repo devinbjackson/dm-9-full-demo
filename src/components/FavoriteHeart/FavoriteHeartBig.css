@@ -1,0 +1,21 @@
+.favorite-heart-big{
+    margin: 10px 10px 0 0;
+    color: grey;
+    z-index: 0;
+    display: block;
+    font-size: 2em;
+}
+.favorite-heart-big {
+    margin: 10px 10px 0 0;
+    color: grey;
+    z-index: 0;
+}
+
+.favorite-heart-big:hover{
+    color:rgb(191, 71, 71);
+    cursor: pointer;
+    z-index: 2;
+}
+input{
+    position: relative !important;
+}

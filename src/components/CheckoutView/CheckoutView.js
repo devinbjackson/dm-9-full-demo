@@ -29,6 +29,8 @@ class CheckoutView extends Component {
         cityError: '',
         stateNameError: '',
         zipError: '',
+        email: '',
+        emailError: '',
         paying: 'false'
     }
     this.change = this.change.bind(this)
@@ -49,6 +51,7 @@ class CheckoutView extends Component {
       city: this.state.city,
       stateName: this.state.stateName,
       zip: this.state.zip,
+      email: this.state.email
     }).then(function(response) {
       return response.data;
     })
@@ -69,6 +72,7 @@ class CheckoutView extends Component {
         cityError: '',
         stateNameError: '',
         zipError: '',
+        emailError: '',
         paying: 'true'
     });
   }
@@ -112,6 +116,10 @@ class CheckoutView extends Component {
           if (this.state.zip.length < 5) {
             isError = true;
             errors.zipError = "Please enter zip code";
+          }
+          if (this.state.email.length < 2 || this.state.email.indexOf('@') <= 0) {
+            isError = true;
+            errors.emailError = "Please enter valid email";
           }
       
           this.setState({
@@ -254,6 +262,14 @@ class CheckoutView extends Component {
       onChange={e =>this.change(e)}
       floatingLabelFixed={true}
       errorText={this.state.lastNameError}
+        />
+        <TextField
+        name="email"
+      floatingLabelText="Email"
+      value={this.state.email}
+      onChange={e =>this.change(e)}
+      floatingLabelFixed={true}
+      errorText={this.state.emailError}
         />
         <TextField
         name="streetAddress"

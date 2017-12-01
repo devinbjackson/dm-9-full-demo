@@ -218,7 +218,7 @@ class NavBar extends Component {
             <Link to="/checkout">
               {" "}
               <RaisedButton
-                style={{bottom: 0, }}
+                style={{bottom: 0, position: 'absolute'}}
                 onClick={this.handleClose}
                 primary
                 label={`$${total} - CHECK OUT`}
@@ -285,7 +285,7 @@ class NavBar extends Component {
             <Link to="/checkout">
               {" "}
               <RaisedButton
-                style={{bottom: 0, }}
+                style={{bottom: 0, position: 'absolute'}}
                 onClick={this.handleClose}
                 primary
                 label={`$${total} - CHECK OUT`}

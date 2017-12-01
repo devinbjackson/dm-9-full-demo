@@ -16,22 +16,24 @@ align-items: center;
 }
 .user-page-left{
     margin-right: 20px; 
-    background-color: rgb(213, 120, 120);
+
     height: 500px;
     width: 40vw;
     text-align: left;
+    color: black
 }
 
 .user-page-right{
     margin-left: 20px; 
-    background-color: rgb(128, 128, 201);
+    color: black;
     height: 500px;
     width: 40vw;
     text-align: left;
 }
 
 .orders{
-    max-width: 400px
+    max-width: 400px;
+    color: black;
 }
 
 .divider{

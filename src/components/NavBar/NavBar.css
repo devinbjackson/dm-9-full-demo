@@ -49,13 +49,17 @@ a:hover, a:active { text-decoration: none; }
     bottom: -8px;
 }
 
+.cart-drawer{
+    line-height: 30px;
+}
+
 .cart-drawer >div >div >div{
-    display: flex;
+    display: flex !important;
     justify-content: center;
     align-items: center;
-    height: 8px;
-    margin-top: -30px;
-    margin-left: 20px;
+    height: 15px;
+    margin-top: 15px;
+    margin-left: 0px;
 }
 
 

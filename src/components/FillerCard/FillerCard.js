@@ -9,6 +9,9 @@ import Paper from 'material-ui/Paper';
 import FavoriteHeart from '.././FavoriteHeart/FavoriteHeart'
 import './FillerCard.css';
 import { relative } from 'path';
+import MEN from './MEN.jpg';
+import WOMEN from './WOMEN.jpg';
+import ACCESSORIES from './ACCESSORIES.jpg';
 
 class FillerCard extends Component {
     constructor(props) {
@@ -25,10 +28,11 @@ class FillerCard extends Component {
         .then(response =>{ 
         this.setState({list: response.data})
         })
-      
+        
       }
 
     render() {
+        console.log(this.state.list[0])
         const list = 
          
         this.state.list.map(function(item){
@@ -36,10 +40,11 @@ class FillerCard extends Component {
          return (
 
          <div  className="list-item-whole">
-                <FavoriteHeart product={item}/>
+            <FavoriteHeart product={item}/>
             <Link to={`/details/${item.product_id}`}>
                 <a className="black-text list-item">
-                <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
+                <div className="list-image " style={{backgroundImage: `url(${item.image_url})`}}>
+                <div className="image-price">{item.price}</div>
                 </div>
                 <div className="filler_image_name">
                 {item.name}
@@ -60,12 +65,23 @@ class FillerCard extends Component {
                }
                </div>
                     
-                     <div className="filler-list"> {list} </div>
-                    
-
-            <Link to={`/${this.props.name}`}>
-            <div className="bordered"><FlatButton label={` SEE ${this.props.name}`} /></div>
+                     <div className="filler-list">
+                      {list} 
+            <div className="effect7" style={{
+                backgroundPosition:'center',
+                 
+                backgroundImage: `url(${
+            this.props.name==='MEN'?MEN 
+            :this.props.name==='WOMEN'?WOMEN 
+            :this.props.name==='ACCESSORIES'?ACCESSORIES:''
+            })`}}>
+            <Link  to={`/${this.props.name}`}>
+            <div className="bordered">
+            <FlatButton className="see-button"  label={` SEE ${this.props.name}`} /></div>
             </Link>
+            </div>
+                    </div>
+
            </div> 
         );
     }

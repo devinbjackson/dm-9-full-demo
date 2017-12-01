@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from "axios";
 import { connect } from "react-redux";
 
+import FavoriteHeartBig from '../FavoriteHeart/FavoriteHeartBig';
 import FavoriteHeart from '../FavoriteHeart/FavoriteHeart';
 import AddToCart from "../AddToCart/AddToCart";
 import './Details.css';
@@ -56,8 +57,8 @@ class Details extends Component {
               <div className="details-card">
                <h1>{product.name}</h1>
                <div>{product.description}</div>
-              <div> {product.price? `$${product.price}`:''}</div>
-              
+              <div style={{fontSize:"1.3em"}}> {product.price? `$${product.price}`:''}</div>
+              <FavoriteHeartBig product={product}/>
               <AddToCart product={product}/>
               </div>
               

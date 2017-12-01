@@ -66,7 +66,7 @@ class UserPage extends Component {
                <div className="user-page-sides">
 
                <div className="user-page-left">
-               Your Orders
+               <h1>Your Orders</h1>
                {itemsInCart}
                </div>
                <div className="divider">
@@ -76,7 +76,7 @@ class UserPage extends Component {
                </div>
                </div>
                <div className="user-page-right">
-               Your Favorites
+               <h1>Your Favorites</h1>
                {itemsInCart}
                </div>
                </div>

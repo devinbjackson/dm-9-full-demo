@@ -27,8 +27,36 @@
 .black-text{
     color: black;
 }
- 
+.list-item-whole:hover  .favorite-heart-whole{
+    display: block;
+}
+.favorite-heart-whole:hover  .image-price{
+    opacity: 1;
+}
 
+.image-price{  
+margin:6px;
+left: 0;
+position: absolute;
+opacity: 0;
+display: flex;
+align-content: flex-start;
+width: 23%;
+height: 20%;
+text-shadow:
+.6px .6px rgb(238, 238, 238) !important;
+
+ }
+.image-price::before{
+    content: "$"
+} 
+ .list-image:hover .image-price{
+    margin:6px;
+    opacity: 1;
+    left: 0;
+     color: rgb(118, 118, 118);
+    position: absolute;
+}
 .list-image {
     display: flex;
     flex-direction: row-reverse;
@@ -52,12 +80,48 @@
     width: 210px;
     height: 292px
 }
+.see-button{
+    background-color: rgba(202, 202, 202, 0.556) !important;
+}
+.see-button:hover{
+    background-color: rgb(244, 244, 244) !important;
+    color: rgb(165, 53, 53) !important;
+}
+
+.shadowed{
+    position:relative;
+
+     box-shadow:0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+.effect7{
+   
+    
+        position:relative;
+        -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+           -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+                box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+   
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: 5px;
+    width: 410px;
+    height: 250px;
+    margin-top: 5px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
 
 .bordered{
     border-color: black;
     border-style: solid;
     border-width: 2px;
-    margin-bottom: 75px;
+}
+
+.bordered:hover{
+    border-color: rgb(165, 53, 53) ;
 }
 .top-margin{
     margin-top: 75px;
@@ -69,6 +133,16 @@
     justify-content: center;
     width: 80%;
 }
+
+@media screen and (min-width: 860px){
+    .effect7{
+        width: 97%;
+        height: 250px;
+        margin-top: 25px;
+    }
+
+}
+
 
 @media screen and (min-width: 750px) and ( max-width: 860px){
     .filler-list{
@@ -98,6 +172,11 @@
     .list-image{
         width: 95%
     }  
+    .effect7{
+         width: 80%;
+         height: 250px;
+         margin-top: 5px;
+     }
 }
 
 @media screen and (max-width: 450px){
@@ -114,6 +193,12 @@
     .filler-list a{
         width: 48vw;
     }    
+    .filler-list .bordered *{
+        width: auto;
+    }
+    .filler-list .bordered {
+        display: inline-block !important;
+    }     
     .list-item{
     
         width: 100%;
@@ -122,5 +207,16 @@
     .list-image{
         width: 95%
     }  
+    .bordo{
+
+        width: 96.5% !important;
+
+     }
+
+     .effect7{
+        width: 95%;
+        height: 250px;
+        margin-top: 5px;
+    }
 }
    

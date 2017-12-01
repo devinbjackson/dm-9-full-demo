@@ -11,12 +11,11 @@ import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
 
-
 import { requestUser, addToFaves , removeFromFaves, refreshFaves } from '../../ducks/reducer';
-import './FavoriteHeart.css';
+import './FavoriteHeartBig.css';
 
 
-class FavoriteHeart extends Component {
+class FavoriteHeartBig extends Component {
     //      console.log(response.data[0])
     constructor(props) {
         super(props);
@@ -108,9 +107,8 @@ class FavoriteHeart extends Component {
               marginBottom: 16,
             },
           };
-
         return (
-           <div onClick={()=>this.handleClick()} className={`favorite-heart-whole ${solid? 'liked':''}`}>
+           <div onClick={()=>this.handleClick()} className={`favorite-heart-big ${solid? 'liked':''}`}>
 
                 <Checkbox
                     checked={solid}
@@ -118,6 +116,8 @@ class FavoriteHeart extends Component {
                     uncheckedIcon={<ActionFavoriteBorder />}
                     style={styles.checkbox}
                 />
+
+
                 <Dialog
                 title="Please Login to Favorite"
                 actions={actions}
@@ -136,4 +136,4 @@ class FavoriteHeart extends Component {
 
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {requestUser, addToFaves, removeFromFaves, refreshFaves})(FavoriteHeart);
+export default connect(mapStateToProps, {requestUser, addToFaves, removeFromFaves, refreshFaves})(FavoriteHeartBig);

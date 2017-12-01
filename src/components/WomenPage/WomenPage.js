@@ -33,6 +33,7 @@ class WomenPage extends Component {
     <Link to={`/details/${item.product_id}`}>
      <a className="black-text list-item">
       <div className="list-image" style={{backgroundImage: `url(${item.image_url})`}}>
+      <div className="image-price">{item.price}</div>
       </div>
       <div className="filler_image_name">
       {item.name}
