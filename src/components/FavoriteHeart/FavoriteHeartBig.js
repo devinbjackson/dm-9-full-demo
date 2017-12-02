@@ -38,11 +38,6 @@ class FavoriteHeartBig extends Component {
 
         const faved = (this.props.faves.includes(this.props.product.product_id) ? true:false);
 
-        console.log("this.props.pID",this.props.product.product_id)    
-        console.log(
-        "product id from state", 
-        this.props.product.product_id,
-        "and faves", this.props.faves)
 
         this.setState({logged: guy,
         solid: faved

@@ -36,16 +36,15 @@
 
 .image-price{  
 margin:6px;
+top: 3px;
 left: 0;
+color: black;
 position: absolute;
 opacity: 0;
 display: flex;
 align-content: flex-start;
 width: 23%;
 height: 20%;
-text-shadow:
-.6px .6px rgb(238, 238, 238) !important;
-
  }
 .image-price::before{
     content: "$"
@@ -54,7 +53,7 @@ text-shadow:
     margin:6px;
     opacity: 1;
     left: 0;
-     color: rgb(118, 118, 118);
+     color: rgb(0, 0, 0);
     position: absolute;
 }
 .list-image {

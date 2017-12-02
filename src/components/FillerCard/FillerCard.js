@@ -32,7 +32,7 @@ class FillerCard extends Component {
       }
 
     render() {
-        console.log(this.state.list[0])
+
         const list = 
          
         this.state.list.map(function(item){
@@ -57,7 +57,7 @@ class FillerCard extends Component {
 
         return (
            <div className="filler-whole">
-               <div class="top-margin">
+               <div className="top-margin">
                {this.props.name === 'ACCESSORIES'?
               <div className="title_text">NEW {this.props.name}</div>
               :

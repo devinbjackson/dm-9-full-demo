@@ -9,6 +9,7 @@ const GET_FAVES = "GET_FAVES";
 const DESTROY_CART = "DESTROY_CART";
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 const REMOVE_FROM_FAVES = 'REMOVE_FROM_FAVES';
+const REQ_ORDERS = 'REQ_ORDERS';
 
 // Action Creators
 export function requestUser() {
@@ -134,6 +135,19 @@ export function refreshFaves() {
   };
 }
 
+export function requestOrders(id) {
+  return {
+    type: REQ_ORDERS,
+    payload:  axios.get(`/api/orders/${id}`)
+    .then(function(response) {
+       console.log("UUUUUUUUUUUSSSESERRRRRRRRRRR",response.data)
+       return response.data; 
+    }).catch(function(error) {
+        console.log(error);
+    })
+  }
+}
+
 // Initial State
 
 const initialState = {
@@ -141,7 +155,8 @@ const initialState = {
   logged: "LOG IN",
   cart: [],
   isLoading: false,
-  faves: []
+  faves: [],
+  orders: []
 };
 
 // Reducer
@@ -203,6 +218,11 @@ export default function reducer(state = initialState, action) {
         isLoading: false,
         faves: action.payload
       });
+
+      case REQ_ORDERS + "_PENDING":
+      return Object.assign({}, state, {loading: true})
+      case REQ_ORDERS + "_FULFILLED":
+      return Object.assign({}, state, {orders: action.payload, loading: false})
 
 
     //   case DESTROY_CART + "_PENDING":

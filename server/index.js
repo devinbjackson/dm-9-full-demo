@@ -99,7 +99,9 @@ app.get("/logout", function(req, res) {
   res.redirect("http://localhost:3000/");
 });
 
-app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.session.cart = [];
+app.get("/api/paySuccess", (req, res, next) => { 
+  if(!req.session.cart) req.session.cart = [];
+  const rqspuv = req.session.passport.user.vintage_user_id;
   const rss = req.session.shippingInfo
   const total = req.session.cart.length ? req.session.cart.reduce(function(acc, item){
     return acc + parseFloat(item.price);
@@ -107,12 +109,10 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
   req.session.purchases = [...req.session.cart];
   const rsc = [...req.session.cart];
   req.app.get("db")
-  .addOrderByShipping([rss.firstName, rss.lastName, rss.streetAddress, rss.apt, rss.city, rss.stateName, rss.zip, total, rss.email])
+  .addOrderByShipping([rss.firstName, rss.lastName, rss.streetAddress, rss.apt, rss.city, rss.stateName, rss.zip, total, rss.email, rqspuv])
     .then(response => {
 
       const orderId = response[0].order_id;
-      console.log("dagffdsgdfgsdfgdfsgsdfg",rsc)
-
       for(var i = 0; i < rsc.length; i++){
 
 
@@ -122,8 +122,6 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
          res.json(response).cath(console.log);
       })
     }
-
-      console.log("aobs rezzzzzzdata", response[0].order_id, typeof response[0].order_id)
       res.json(response[0].order_id).catch(console.log);
   })
 
@@ -144,10 +142,15 @@ app.get("/api/paySuccess", (req, res, next) => {  // if(!req.session.cart) req.s
 });
 
 app.get("/api/me", function(req, res) {
-  console.log(req)
   if (!req.user) return res.status(404);
 
   res.status(200).json(req.user);
+});
+
+app.get("/api/session", function(req, res) {
+  if (!req.session) return res.status(404);
+
+  res.status(200).json(req.session);
 });
 
 app.get("/api/cart", (req, res, next) => {
@@ -165,7 +168,6 @@ app.get("/api/faves", (req, res, next) => {
 app.delete("/api/cart/:id", (req, res, next) => {
   const deleteID = req.params.id;
   req.session.cart.splice(req.session.cart.indexOf(req.session.cart.product_id === deleteID),1);
-  console.log('in rem from cart', req.session.cart);
   res.json(req.session.cart);
 });
 
@@ -177,16 +179,13 @@ app.post("/api/cart", (req, res, next) => {
 
 app.post("/api/faves", (req, res, next) => {
   if (!req.session.faves) req.session.faves = [];
-  console.log("in fave post", req.body.id)
   req.session.faves.push(req.body.id);
   res.json(req.session.faves);
 });
 
 app.delete("/api/faves/:id", (req, res, next) => {
   const deleteID = req.params.id;
-  console.log("delId", deleteID, typeof deleteID)
   req.session.faves = req.session.faves.filter(function(x){
-    console.log("x=",x, typeof x);
     return x != deleteID
   })
   res.json(req.session.faves);
@@ -197,6 +196,7 @@ app.get("/api/orders/:id", (req, res, next) => {
   .get("db")
   .getOrdersByUserId([req.params.id])
   .then(response => {
+    console.log(response)
     res.json(response);
   })
   .catch(console.log);
@@ -205,7 +205,6 @@ app.get("/api/orders/:id", (req, res, next) => {
 app.post("/api/shippingInfo", (req, res, next) => {
   if (!req.session.shippingInfo) req.session.shippingInfo = {};
   req.session.shippingInfo = req.body;
-  console.log(req.session.shippingInfo)
   res.json(req.session.shippingInfo);
 })
  

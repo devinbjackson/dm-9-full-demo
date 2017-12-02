@@ -256,7 +256,7 @@ class NavBar extends Component {
           <div className="section-line"></div> 
           <Link to="/accessories"><MenuItem className="menu-left-item" onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
           <div className="section-line"></div> 
-          <MenuItem className="menu-left-item back-item" onClick={this.handleClose}><i class="fa fa-arrow-left fa-lg" aria-hidden="true"></i>{`  BACK`}</MenuItem>
+          <MenuItem className="menu-left-item back-item" onClick={this.handleClose}><i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>{`  BACK`}</MenuItem>
           <div className="section-line"></div> 
         </Drawer>
 
