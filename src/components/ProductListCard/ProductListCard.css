@@ -1,0 +1,15 @@
+.product-list-card-whole{
+    width: 95%;
+    display: flex;
+    color: black !important;
+    margin: 10px 0 10px 0;
+    border: gray;
+    border-style: inset;
+}
+
+.product-list-card-image{
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
