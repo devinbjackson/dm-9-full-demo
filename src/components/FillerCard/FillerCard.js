@@ -77,7 +77,7 @@ class FillerCard extends Component {
             })`}}>
             <Link  to={`/${this.props.name}`}>
             <div className="bordered">
-            <FlatButton className="see-button"  label={` SEE ${this.props.name}`} /></div>
+            <FlatButton className="see-button"  label={` SEE ${this.props.name==='ACCESSORIES'?'ACC.':this.props.name}`} /></div>
             </Link>
             </div>
                     </div>

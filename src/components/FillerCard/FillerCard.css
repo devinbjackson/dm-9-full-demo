@@ -6,6 +6,11 @@
     flex-direction: column;
     position: relative;
 }
+@media(min-width: 768px){
+.title_text{
+font-size: 2em;
+}
+}
 
 .list-item-whole{
     display: flex;

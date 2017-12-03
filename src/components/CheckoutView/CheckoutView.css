@@ -32,9 +32,14 @@
 }
 
 .sides .left-side img{
-    width: 50px;
+     width: 50px;
      height: 50px ;
      object-fit: cover;
+}
+.sides .left-side{
+    width: auto;
+    margin-left: 20px;
+    object-fit: cover;
 }
 #checkout-right-side h1{
     color: white;
@@ -89,4 +94,25 @@
     height: 400px;
     width: 400px;
     display: none;
+}
+
+@media (max-width: 860px){
+    #checkout_view_whole{
+        flex-direction: column-reverse;
+        width: 100vw;
+        height: 170vh;
+        margin-top: -20vh;
+    }
+    #checkout-left-side {
+        width: 100vw;
+        position: static;
+    }
+    form{
+        margin-top: 0px !important;
+        overflow: scroll
+    }
+    #checkout-right-side {
+        width: 100vw;
+        position: relative;
+    }
 }

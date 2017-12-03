@@ -68,7 +68,6 @@ passport.use(
               .get("db")
               .createUserByAuth([profile.id, profile.displayName])
               .then(created => {
-                console.log('CREATED', created);
                 return done(null, created[0]);
               });
           } else {
@@ -101,7 +100,10 @@ app.get("/logout", function(req, res) {
 
 app.get("/api/paySuccess", (req, res, next) => { 
   if(!req.session.cart) req.session.cart = [];
-  const rqspuv = req.session.passport.user.vintage_user_id;
+  let rqspuv = null;
+  if(!req.session.passport){
+  console.log("user doesnt exist")
+  } else {rqspuv = req.session.passport.user.vintage_user_id};
   const rss = req.session.shippingInfo
   const total = req.session.cart.length ? req.session.cart.reduce(function(acc, item){
     return acc + parseFloat(item.price);
@@ -119,7 +121,7 @@ app.get("/api/paySuccess", (req, res, next) => {
       req.app.get("db")
       .addOrderLineByPurchases([orderId ,rsc[i].product_id, rsc[i].price])
         .then(response => {
-         res.json(response).cath(console.log);
+         res.json(response).catch(console.log);
       })
     }
       res.json(response[0].order_id).catch(console.log);
@@ -167,7 +169,15 @@ app.get("/api/faves", (req, res, next) => {
 
 app.delete("/api/cart/:id", (req, res, next) => {
   const deleteID = req.params.id;
-  req.session.cart.splice(req.session.cart.indexOf(req.session.cart.product_id === deleteID),1);
+  console.log('deleteID in injex.js',deleteID)
+
+  //this didnt seem to work. probably not immutable
+  //req.session.cart.splice(req.session.cart.indexOf(req.session.cart.product_id === deleteID),1);
+
+  req.session.cart = req.session.cart.filter(function(x){
+    return x.product_id != deleteID
+  })
+
   res.json(req.session.cart);
 });
 
@@ -179,7 +189,9 @@ app.post("/api/cart", (req, res, next) => {
 
 app.post("/api/faves", (req, res, next) => {
   if (!req.session.faves) req.session.faves = [];
-  req.session.faves.push(req.body.id);
+  req.session.faves.includes(req.body.id)?
+  console.log("favorite already in list")
+  :req.session.faves.push(req.body.id);
   res.json(req.session.faves);
 });
 
@@ -196,7 +208,6 @@ app.get("/api/orders/:id", (req, res, next) => {
   .get("db")
   .getOrdersByUserId([req.params.id])
   .then(response => {
-    console.log(response)
     res.json(response);
   })
   .catch(console.log);

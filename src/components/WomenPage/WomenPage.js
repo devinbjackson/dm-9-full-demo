@@ -4,7 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import FavoriteHeart from '.././FavoriteHeart/FavoriteHeart'
-
+import hero from './women_hero.jpg';
 
 import './WomenPage.css';
 
@@ -44,7 +44,8 @@ class WomenPage extends Component {
    })
     return (
       <div className="productPage-whole">
-        <div className="page-image" style={{backgroundImage: `url(http://www.gap.com/Asset_Archive/GPWeb/content/0014/392/167/assets/desktop/01_DESK_IMG.jpg)`}}></div>
+        <div className="page-image" style={{backgroundImage: `url(${hero})`}}></div>
+        <div className="section-line"></div> 
         <div className="filler-list"> {list}</div>
         
       </div>

@@ -222,7 +222,7 @@ class CheckoutView extends Component {
 
     for (let i = 0; i < this.props.cart.length; i++) {
       itemsInCart.push(
-        <div>
+        <div style={{display: 'flex', alignItems:'center', justifyContent: 'space-between', minWidth: '420px'}}>
           <Link to={`/details/${this.props.cart[i].product_id}`}>
             <div className="sides">
               <div className="left-side">
@@ -240,6 +240,7 @@ class CheckoutView extends Component {
               </div>
             </div>
           </Link>
+          
           <RaisedButton
             onClick={() =>
               this.props.removeFromCart(this.props.cart[i].product_id)

@@ -65,3 +65,7 @@ height: 80vh;
     border: #A2A2F5;
     border-style: inset;
 }
+
+.fave-card-heart{
+    position: fixed !important;
+}

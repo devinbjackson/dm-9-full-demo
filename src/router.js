@@ -7,6 +7,7 @@ import WomenPage from "./components/WomenPage/WomenPage";
 import AccPage from "./components/AccPage/AccPage";
 import Details from "./components/Details/Details";
 import CheckoutView from "./components/CheckoutView/CheckoutView";
+import UserPage from './components/UserPage/UserPage';
 
 export default (
   <Switch>
@@ -15,6 +16,7 @@ export default (
     <Route path="/women"       component={WomenPage} />
     <Route path="/accessories" component={AccPage} />
     <Route path="/details/:id" component={Details} />
-    <Route path="/checkout"    component={CheckoutView}/> 
+    <Route path="/checkout"    component={CheckoutView}/>
+    <Route path="/userpage"    component={UserPage}/>  
   </Switch>
 );

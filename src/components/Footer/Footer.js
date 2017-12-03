@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 import {Link} from "react-router-dom";
 
-
+import logo from "../NavBar/DJLogo.png"
 
 const Footer = () => {
     return (
@@ -20,8 +20,8 @@ const Footer = () => {
         <div className="contact-section-items">Call: 1 800 445 8904</div>
         </div>
          <div className="nav-logo">
-         <img style={{width: "100px"}} src="https://shopual.com/wp-content/uploads/2017/02/UAL-logo-white.png" alt="logo"/>
-               TITLE
+         <img style={{width: "100px"}} src={logo} alt="logo"/>
+               DJ
          </div>
         </div>
     )

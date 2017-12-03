@@ -56,6 +56,10 @@
 .other-images img{
     margin: 0px 0 10px 0;
 }
+
+
+
+
 @media (max-width: 450px){
     .other-images{
         display:none;
@@ -76,9 +80,9 @@
         margin-right: 0px;
     }
     .details-card{
-        height: 50vh;
+        height: 40vh;
         width:90%;
-        margin-top: 50px;
+        margin-top: 60px;
         margin-left: 20px;
         display: flex;
         justify-content: space-around;

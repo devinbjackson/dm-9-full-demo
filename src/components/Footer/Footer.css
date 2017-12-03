@@ -1,6 +1,8 @@
 .footer-whole {
 
-    background-color: black;
+   
+    background: black;
+
     color: white;
     display: flex;
     justify-content: space-around;
@@ -25,6 +27,7 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    height: 90vh;
    }
 
  }

@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 
-import FavoriteHeartBig from '.././FavoriteHeart/FavoriteHeartBig'
 import './ProductListCard.css';
 
 class ProductListCard extends Component {
@@ -45,7 +44,6 @@ class ProductListCard extends Component {
                <span> {product.name}</span>
                <span>{product.price}</span>
                 </div>
-                <FavoriteHeartBig product={product}/>
             </div> 
         );
     }

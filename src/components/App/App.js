@@ -15,6 +15,7 @@ import NavBar from '../NavBar/NavBar';
 import PreFooter from '../PreFooter/PreFooter'
 import Footer from '../Footer/Footer';
 import UserPage from '../UserPage/UserPage';
+import appBg from './dust_scratches.png'
 
 
 class App extends Component {
@@ -22,10 +23,9 @@ class App extends Component {
 
   render() {
     
-    return (<div className="App">
+    return (<div className="App" style={{backgroundImage: 'url('+appBg+')'}}>
       <NavBar /> 
               {router}
-              <UserPage/>
       <PreFooter/>
       <Footer/>
     </div>

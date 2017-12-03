@@ -181,9 +181,9 @@ export default function reducer(state = initialState, action) {
       });  
 
     case REMOVE_FROM_CART + "_PENDING":
-      console.log("in the remove case",action.payload)
     return Object.assign({}, state, { isLoading: true });
     case REMOVE_FROM_CART + "_FULFILLED":
+    console.log("in the remove case", action.payload)
       return Object.assign({}, state, {
         isLoading: false,
         cart: action.payload

@@ -26,6 +26,9 @@ class UserPage extends Component {
         .then((response)=>{this.props.requestOrders(response.value.vintage_user_id),
            console.log(this.props.orders)})
     }
+    componentReceivedProps(){
+        this.props.refreshFaves()
+    }
 
     render() { 
         const itemsInFaves = [];
@@ -33,7 +36,8 @@ class UserPage extends Component {
         console.log("faves",faves)
              for (let i = 0; i < faves.length; i++) {
                   itemsInFaves.push(
-                      <div>
+                      <div style={{position: 'relative'}}>
+                          <FavoriteHeart product={{product_id: faves[i]}}/>
                       <Link to={`/details/${faves[i]}`}>
                           <ProductListCard id={faves[i]}/>
                       </Link>
@@ -73,11 +77,10 @@ class UserPage extends Component {
             total = total + parseFloat(this.props.orders[j].product_price, 10),
             groupArray.push(
               <div >
-                 Item #{this.props.orders[j].product_id} ........... ${this.props.orders[j].product_price}
+                 <Link to={`/details/${this.props.orders[j].product_id}`} style={{marginLeft: '10px'}}>Item #{this.props.orders[j].product_id}</Link> <span style={{marginRight: '10px', float: 'right'}}>${this.props.orders[j].product_price}</span>
               </div>)):'';
-            
           }
-          comboOrder.push(<div className="order-box">{groupArray} Total: ${total.toFixed(2)} </div>);
+          comboOrder.push(<div className="order-box">{groupArray} <span style={{marginLeft: '10px'}}>Total: ${total.toFixed(2)}</span> </div>);
         
         }
          console.log(comboOrder)

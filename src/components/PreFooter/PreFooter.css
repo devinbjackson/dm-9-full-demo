@@ -18,3 +18,11 @@
     margin: 10px 10px 10px 10px;
 }
 
+@media (max-width: 610px){
+
+    .preFooter-whole{
+        margin-top: 50px;
+        height: 200px !important;
+        font-size: 1.5em;
+    }
+}

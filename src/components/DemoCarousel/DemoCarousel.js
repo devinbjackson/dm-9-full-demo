@@ -13,15 +13,27 @@ export default class DemoCarousel extends Component {
         return (
             <Carousel infiniteLoop={true} autoPlay={true} showStatus={false} showThumbs={false} width="100%" transitionTime={900} interval={7000}>
                 <div>
-                    <img className="carousel-image" src={bricks} />
-                    
+                    <img className="carousel-image" src={bricks} /> 
+                       <div style={{color: 'white', marginTop:"-90vh", fontSize: '4em', display: 'flex'}}>
+
+                        <div className="left">  
+
+                        <div>WEAR OLD CLOTHES</div>
+                        <div>_________</div>
+                        <div>LIKE THEY'RE <span className="the-red" style={{backgroundColor: 'white', padding: '-2px 10px -2px 10px'}}>NEW</span></div>
+
+                        </div>
+                        
+                        </div>
                 </div>
                 <div>
                     <img className="carousel-image" src={rocksJeans}/>
                     
+                    
                 </div>
                 <div>
-                    <img className="carousel-image"src={people}/>
+                    <img className="carousel-image" src={people}/>
+
                    
                 </div>
             </Carousel>

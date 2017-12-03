@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton'
 import Badge from "material-ui/Badge";
 import AppBar from 'material-ui/AppBar';
 
+import logo from './DJLogo.png';
 import cart_img from "./cart-logo.svg";
 import { requestUser, refreshCart, removeFromCart } from "../../ducks/reducer";
 
@@ -82,7 +83,6 @@ class NavBar extends Component {
 
         <MenuItem
           className="cart-drawer"
-          onClick={this.handleClose}
           value={this.props.cart[i].product_id}
           key={i}
         >
@@ -109,7 +109,7 @@ class NavBar extends Component {
             </div>
           </Link>
           <RaisedButton
-                onClick={()=>this.props.removeFromCart(this.props.cart[i].product_id)}
+                onClick={()=>{console.log('removing item with id ', this.props.cart[i]),this.props.removeFromCart(this.props.cart[i].product_id)}}
                 primary
                 label="REMOVE"
                 fullWidth={false}
@@ -129,7 +129,7 @@ class NavBar extends Component {
           <div className="nav-logo">
             <img
               style={{ width: "100px" }}
-              src="https://shopual.com/wp-content/uploads/2017/02/UAL-logo-white.png"
+              src={logo}
             />
           </div>
           
@@ -143,6 +143,12 @@ class NavBar extends Component {
         <Link to="/accessories">
           <div className="nav-acc">ACCESSORIES</div>
         </Link>
+
+        {this.props.user.authid?
+        <Link to="/userpage">
+          <div className="nav-account">ACCOUNT</div>
+        </Link>
+        :''}
 
       { cartNumber ?
         <div className="nav-signIn-cart">
@@ -200,6 +206,7 @@ class NavBar extends Component {
           openSecondary={true}
           open={this.state.rightOpen}
           onRequestChange={open => this.setState({rightOpen: open})}
+          
         >
           {this.props.cart.length ? items : 
           <MenuItem style={{
@@ -235,7 +242,7 @@ class NavBar extends Component {
 
 
         <AppBar
-        title="Title"
+        title="- DJ -"
         onLeftIconButtonTouchTap={()=> this.setState({leftOpen: true})}
         iconElementRight={<IconButton><img id="just-cart" src={cart_img} onClick={this.handleToggle} /></IconButton>}
         />
@@ -245,19 +252,27 @@ class NavBar extends Component {
           docked={false}
           width={'100%'}
           open={this.state.leftOpen}
-          containerStyle={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}
+          containerStyle={{display: 'flex', flexDirection: 'column',color:'white', justifyContent: 'space-between', backgroundColor:'grey'}}
         > 
-          <div className="section-line"></div> 
-          <Link to="/"><MenuItem className="menu-left-item" onClick={this.handleClose}>HOME</MenuItem></Link>
-          <div className="section-line"></div> 
-          <Link to="/men"><MenuItem className="menu-left-item" onClick={this.handleClose}>MEN</MenuItem></Link>
-          <div className="section-line"></div> 
-          <Link to="/women"><MenuItem className="menu-left-item" onClick={this.handleClose}>WOMEN</MenuItem></Link>
-          <div className="section-line"></div> 
-          <Link to="/accessories"><MenuItem className="menu-left-item" onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
-          <div className="section-line"></div> 
+          <div className="section-line-red"></div> 
+          <Link to="/"><MenuItem className="menu-left-item " onClick={this.handleClose}>HOME</MenuItem></Link>
+          <div className="section-line-red"></div> 
+          <Link to="/men"><MenuItem className="menu-left-item " onClick={this.handleClose}>MEN</MenuItem></Link>
+          <div className="section-line-red"></div> 
+          <Link to="/women"><MenuItem className="menu-left-item " onClick={this.handleClose}>WOMEN</MenuItem></Link>
+          <div className="section-line-red"></div> 
+          <Link to="/accessories"><MenuItem className="menu-left-item  " onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
+          <div className="section-line-red"></div> 
+
+          {guy?
+          (<Link to="/userpage"><MenuItem className="menu-left-item " onClick={this.handleClose}>ACCOUNT</MenuItem></Link>):
+    
+          (<Link to="/login"><MenuItem className="menu-left-item " onClick={this.handleClose}>LOGIN</MenuItem></Link>)
+          }
+          <div className="section-line-red"></div> 
+
           <MenuItem className="menu-left-item back-item" onClick={this.handleClose}><i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>{`  BACK`}</MenuItem>
-          <div className="section-line"></div> 
+          <div className="section-line-red "></div> 
         </Drawer>
 
         <Drawer 

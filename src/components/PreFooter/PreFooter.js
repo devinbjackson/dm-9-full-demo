@@ -29,9 +29,9 @@ const PreFooter = () => {
         <div className="preFooter-whole" style={{backgroundImage: `url(${imageArray[getRandomInt()]})`}}>
             <span>{`CHECK US OUT :   `}</span>
             <div>
-           <a> <i className="fa fa-facebook-square fa-3x" aria-hidden="true" style={{marginLeft: '20px'}}></i></a>
-           <a><i className="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
-           <a><i className="fa fa-google-plus-square fa-3x" aria-hidden="true"></i></a>
+           <a href="https://www.facebook.com/"> <i className="fa fa-facebook-square fa-3x" aria-hidden="true" style={{marginLeft: '20px'}}></i></a>
+           <a href="https://www.twitter.com/"><i className="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
+           <a href="https://www.googleplus.com/"><i className="fa fa-google-plus-square fa-3x" aria-hidden="true"></i></a>
             </div>
         </div>
     )

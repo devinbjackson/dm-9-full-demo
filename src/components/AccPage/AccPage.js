@@ -4,7 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import FavoriteHeart from '.././FavoriteHeart/FavoriteHeart'
-
+import hero from './accessories_hero.jpg'
 
 import './AccPage.css';
 
@@ -45,7 +45,8 @@ render() {
  })
   return (
       <div className="productPage-whole">
-      <div className="page-image" style={{backgroundImage: `url(https://wallup.net/wp-content/uploads/2016/05/25/163541-fabric-texture-plaid-748x498.jpg)`}}></div>
+      <div className="page-image" style={{backgroundImage: `url(${hero})`}}></div>
+      <div className="section-line"></div> 
       <div className="filler-list"> {list}</div>
       
     </div>

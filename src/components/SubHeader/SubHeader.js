@@ -8,6 +8,7 @@ const SubHeader = () => {
 
     return (
         <div className="subHeader-whole">
+            <div className="section-line"></div>  
             <h1>EXTRA 0% OFF <span className="the-red">NOTHING</span></h1>
             <div className="sh-quadrants">
             <div className="sh-top-left">
@@ -22,6 +23,7 @@ const SubHeader = () => {
             <div className="sh-bottom-right">
             </div>
             </div>
+             
         </div>
     )
 }
