@@ -22,11 +22,13 @@ class NavBar extends Component {
 
     this.handleLogin = this.handleLogin.bind(this);
     this.state = { leftOpen: false ,
-    rightOpen: false};
+    rightOpen: false ,
+    guy: ''};
 
     this.handleClose = this.handleClose.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
     this.handleRightToggle = this.handleRightToggle.bind(this)
+    this.comboCloseLogin = this.comboCloseLogin.bind(this)
   }
 
   handleToggle = () => this.setState({ rightOpen: !this.state.rightOpen });
@@ -56,13 +58,22 @@ class NavBar extends Component {
     window.location.href = "http://localhost:3001/logout";
   }
 
+  comboCloseLogin() {
+    this.handleClose();
+    (this.state.guy? this.handleLogout() : this.handleLogin())
+   }
+
   render() {
     const total = this.props.cart.length ? this.props.cart.reduce(function(acc, item){
       
-      return acc + parseFloat(item.price);
+    return acc + parseFloat(item.price);
 
     }, 0).toFixed(2):0;
     const guy = this.props.user.authid;
+    if(this.state.guy !== guy){
+      this.setState({guy})
+    }
+
     const logInText = function() {
       if (guy) {
         return "LOG OUT";
@@ -244,6 +255,7 @@ class NavBar extends Component {
         <AppBar
         title="- DJ -"
         onLeftIconButtonTouchTap={()=> this.setState({leftOpen: true})}
+      
         iconElementRight={<IconButton><img id="just-cart" src={cart_img} onClick={this.handleToggle} /></IconButton>}
         />
 
@@ -262,14 +274,16 @@ class NavBar extends Component {
           <Link to="/women"><MenuItem className="menu-left-item " onClick={this.handleClose}>WOMEN</MenuItem></Link>
           <div className="section-line-red"></div> 
           <Link to="/accessories"><MenuItem className="menu-left-item  " onClick={this.handleClose}>ACCESSORIES</MenuItem></Link>
+          <div className="section-line-red"></div>
+          {this.props.user.authid?
+          <Link to="/userpage"><MenuItem className="menu-left-item " onClick={this.handleClose}>ACCOUNT</MenuItem></Link>:<MenuItem className="menu-left-item " onClick={this.comboCloseLogin}>{logInText()}</MenuItem>}
+          {this.props.user.authid?
+          <div className="section-line-red"></div>:''}
+          {this.props.user.authid?  
+          <MenuItem className="menu-left-item " onClick={this.comboCloseLogin}>{logInText()}</MenuItem>:''}
+          
           <div className="section-line-red"></div> 
 
-          {guy?
-          (<Link to="/userpage"><MenuItem className="menu-left-item " onClick={this.handleClose}>ACCOUNT</MenuItem></Link>):
-    
-          (<Link to="/login"><MenuItem className="menu-left-item " onClick={this.handleClose}>LOGIN</MenuItem></Link>)
-          }
-          <div className="section-line-red"></div> 
 
           <MenuItem className="menu-left-item back-item" onClick={this.handleClose}><i className="fa fa-arrow-left fa-lg" aria-hidden="true"></i>{`  BACK`}</MenuItem>
           <div className="section-line-red "></div> 

@@ -21,7 +21,8 @@ height: 80vh;
     height: 100%;
     width: 40vw;
     text-align: left;
-    color: black
+    color: black;
+    overflow: scroll;
 }
 
 .user-page-right{
@@ -68,4 +69,49 @@ height: 80vh;
 
 .fave-card-heart{
     position: fixed !important;
+}
+@media (max-width: 768px){
+.user-page-whole{
+    margin-top: -100px; 
+    margin-bottom: -200px;
+    width: 100vw;
+    height: 200vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center; 
+
+}
+.user-page-sides{
+    display: flex;
+
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    max-width: 100vw;
+    
+    }
+    .divider{
+      display: none;
+    }
+
+    .user-page-left{
+        margin: 10px; 
+    
+        height: 100%;
+        width: 100vw;
+        text-align: left;
+        color: black;
+        overflow: scroll;
+    }
+    
+    .user-page-right{
+        margin: 10px; 
+        color: black;
+        height: 100%;
+        width: 100vw;
+        text-align: left;
+    }
 }

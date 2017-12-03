@@ -31,7 +31,7 @@ class ProductListCard extends Component {
             width: 100,
             margin: 20,
             textAlign: 'center',
-            display: 'inline-block',
+            display: 'inline-blonpmck',
           };
           const product = this.state.product ? this.state.product : "";
           console.log(product.image_url)

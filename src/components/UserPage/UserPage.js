@@ -74,13 +74,13 @@ class UserPage extends Component {
           let total = 0;
           for (let j = 0; j < this.props.orders.length; j++) {
             this.props.orders[j].order_id === item?(
-            total = total + parseFloat(this.props.orders[j].product_price, 10),
+            total = total + parseFloat(this.props.orders[j].product_price),
             groupArray.push(
               <div >
                  <Link to={`/details/${this.props.orders[j].product_id}`} style={{marginLeft: '10px'}}>Item #{this.props.orders[j].product_id}</Link> <span style={{marginRight: '10px', float: 'right'}}>${this.props.orders[j].product_price}</span>
               </div>)):'';
           }
-          comboOrder.push(<div className="order-box">{groupArray} <span style={{marginLeft: '10px'}}>Total: ${total.toFixed(2)}</span> </div>);
+          comboOrder.push(<div className="order-box">Order No. {item}{groupArray} <span style={{marginLeft: '10px'}}>Total: ${total.toFixed(2)}</span> </div>);
         
         }
          console.log(comboOrder)
@@ -135,7 +135,7 @@ class UserPage extends Component {
                <div className="user-page-right">
                <h1>Your Favorites</h1>
                  <div className="user-page-list">
-                {itemsInFaves} 
+                {this.props.faves.length?itemsInFaves:"EMPTY"} 
                  </div>
 
                </div>
