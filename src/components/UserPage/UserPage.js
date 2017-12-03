@@ -76,11 +76,11 @@ class UserPage extends Component {
             this.props.orders[j].order_id === item?(
             total = total + parseFloat(this.props.orders[j].product_price),
             groupArray.push(
-              <div >
+              <div style={{fontSize: '.8em'}}>
                  <Link to={`/details/${this.props.orders[j].product_id}`} style={{marginLeft: '10px'}}>Item #{this.props.orders[j].product_id}</Link> <span style={{marginRight: '10px', float: 'right'}}>${this.props.orders[j].product_price}</span>
               </div>)):'';
           }
-          comboOrder.push(<div className="order-box">Order No. {item}{groupArray} <span style={{marginLeft: '10px'}}>Total: ${total.toFixed(2)}</span> </div>);
+          comboOrder.push(<div className="order-box">_Order No. {item} {groupArray} <span style={{marginLeft: '10px'}}>Total: ${total.toFixed(2)}</span> </div>);
         
         }
          console.log(comboOrder)
