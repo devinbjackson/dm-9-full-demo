@@ -136,7 +136,6 @@ class CheckoutView extends Component {
       [e.target.name]: e.target.value,
       paying: `${!this.validate}`
     });
-    console.log(this.state.paying);
   };
   handleChange = (event, index, stateName) => {
     this.setState({ stateName });

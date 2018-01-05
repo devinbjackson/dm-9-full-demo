@@ -39,7 +39,7 @@ class FillerCard extends Component {
 
          return (
 
-         <div  className="list-item-whole">
+         <div  className="list-item-whole" key={item.product_id}>
             <FavoriteHeart product={item}/>
             <Link to={`/details/${item.product_id}`}>
                 <a className="black-text list-item">

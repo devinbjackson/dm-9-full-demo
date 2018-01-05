@@ -75,7 +75,7 @@ const CURRENCY = 'USD';
       // console.log(this);
       window.alert('Payment Successful');
       this.props.destroyCart()
-      window.location.href="http://localhost:3001/api/paySuccess";
+      window.location.href="/api/paySuccess";
     };
 
     errorPayment(data) {

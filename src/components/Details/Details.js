@@ -33,11 +33,22 @@ class Details extends Component {
         })
       }
 
+      componentDidUpdate() {
+        if (this.props.match.params.id !== this.state.product.product_id)
+          axios.get(`/api/details/${this.props.match.params.id}`)
+          .then(response =>{ 
+          this.setState({product: response.data[0]})
+          })
+      }
+
+
+
     render() {
+
         const product = this.state.product ? this.state.product : "";
 
         return (
-           <div className="details-whole">
+           <div className="details-whole" key={this.props.match.params.id}>
            <div className="other-images">
            <a onClick={()=>this.changePicture(product.image_url)}>{product.image_url ?<img style={{width: "100%", height: "15%", objectFit: "contain"}}  src={product.image_url}/>:''}</a>
            <a onClick={()=>this.changePicture(product.image2_url)}>{product.image2_url?<img style={{width: "100%", height: "15%", objectFit: "contain"}}  src={product.image2_url}/>:''}</a>
@@ -62,9 +73,6 @@ class Details extends Component {
               <AddToCart product={product}/>
               </div>
               
-
-
-               
 
 
            </div> 

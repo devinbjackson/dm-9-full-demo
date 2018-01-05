@@ -12,7 +12,7 @@ class MenPage extends Component {
   constructor(props) {
     super(props);
     this.state ={
-        list: []
+        list: [],
     }
 
   }
@@ -30,7 +30,7 @@ class MenPage extends Component {
     
     this.state.list.map(function(item){
     return (
-          <div className="list-item-whole">
+          <div className="list-item-whole" key={item.product_id}>
           <FavoriteHeart product={item}/>
           <Link to={`/details/${item.product_id}`}>
            <a className="black-text list-item">
@@ -47,9 +47,13 @@ class MenPage extends Component {
    })
     return (
         <div className="productPage-whole">
-        <div className="page-image" style={{backgroundImage: `url(${hero})`}}></div>
+        <div className="page-image" style={{backgroundImage: `url(${hero})`}}>MEN</div>
           <div className="section-line"></div> 
-        <div className="filler-list"> {list}</div>
+        <div className="filler-list">
+         {list}
+        
+        
+        </div>
         
       </div>
     );

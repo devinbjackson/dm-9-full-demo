@@ -36,7 +36,7 @@ class NavBar extends Component {
   handleClose = () => {this.setState({ leftOpen: false ,rightOpen: false})};
 
   handleLogin() {
-    window.location.href = "http://localhost:3001/login";
+    window.location.href = "/login";
   }
 
   handleRightToggle() {
@@ -236,7 +236,7 @@ class NavBar extends Component {
             <Link to="/checkout">
               {" "}
               <RaisedButton
-                style={{bottom: 0, position: 'absolute'}}
+                style={{bottom: 0, left: 0,position: 'absolute'}}
                 onClick={this.handleClose}
                 primary
                 label={`$${total} - CHECK OUT`}

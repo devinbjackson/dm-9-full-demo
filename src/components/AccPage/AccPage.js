@@ -29,7 +29,7 @@ render() {
   const list = 
   
   this.state.list.map(function(item){
-  return (<div className="list-item-whole">
+  return (<div className="list-item-whole" key={item.product_id}>
   <FavoriteHeart product={item}/>
   <Link to={`/details/${item.product_id}`}>
    <a className="black-text list-item">
@@ -45,7 +45,7 @@ render() {
  })
   return (
       <div className="productPage-whole">
-      <div className="page-image" style={{backgroundImage: `url(${hero})`}}></div>
+      <div className="page-image" style={{backgroundImage: `url(${hero})`}}>SWAG</div>
       <div className="section-line"></div> 
       <div className="filler-list"> {list}</div>
       

@@ -21,7 +21,7 @@
 @media (max-width: 610px){
 
     .preFooter-whole{
-        margin-top: 50px;
+        margin-top: 0px;
         height: 200px !important;
         font-size: 1.5em;
     }

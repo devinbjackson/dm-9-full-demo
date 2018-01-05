@@ -5,6 +5,7 @@ const session = require("express-session");
 const massive = require("massive");
 const passport = require("passport");
 const Auth0Strategy = require("passport-auth0");
+const dotenv = require('dotenv');
 
 const { secret } = require("./config").session;
 const { domain, clientID, clientSecret } = require("./config.js").auth0;
@@ -13,7 +14,15 @@ const port = 3001;
 const { connectionString } = require("./config").massive;
 const app = express();
 
-//app.use(express.static(`${__dirname}/build`));
+dotenv.config();
+
+app.use(function(req, res, next){
+  console.log(req.path)
+  next()
+})
+
+
+app.use(express.static(`${__dirname}/../build`));
 
 const SERVER_CONFIGS = require('./constants/server');
 
@@ -24,7 +33,6 @@ configureServer(app);
 configureRoutes(app);
 
 let count = 0;
-
 
 
 app.use(
@@ -88,14 +96,14 @@ passport.deserializeUser(function(obj, done) {
 
 app.get("/login",
   passport.authenticate("auth0", {
-    successRedirect: "http://localhost:3000/"
+    successRedirect: "/"
   })
 );
 
 app.get("/logout", function(req, res) {
   req.logout();
   req.session.destroy();
-  res.redirect("http://localhost:3000/");
+  res.redirect("/");
 });
 
 app.get("/api/paySuccess", (req, res, next) => { 
@@ -140,7 +148,7 @@ app.get("/api/paySuccess", (req, res, next) => {
 
   delete req.session.cart;
   delete req.session.shippingInfo;
-  res.redirect('http://localhost:3000');
+  res.redirect('/');
 });
 
 app.get("/api/me", function(req, res) {
@@ -169,14 +177,19 @@ app.get("/api/faves", (req, res, next) => {
 
 app.delete("/api/cart/:id", (req, res, next) => {
   const deleteID = req.params.id;
-  console.log('deleteID in injex.js',deleteID)
-
-  //this didnt seem to work. probably not immutable
-  //req.session.cart.splice(req.session.cart.indexOf(req.session.cart.product_id === deleteID),1);
-
-  req.session.cart = req.session.cart.filter(function(x){
-    return x.product_id != deleteID
-  })
+  
+  remove = () => {
+    for(var i = 0; i < req.session.cart.length; i++){
+      console.log("in the remove endpoint in server", req.session.cart[i].product_id, deleteID)
+      
+      if(req.session.cart[i].product_id == deleteID){
+        console.log("in the loop in server", req.session.cart[i].product_id, deleteID)
+        req.session.cart.splice(i,1);
+        return req.session.cart; 
+      }
+    }
+  }
+  req.session.cart = remove();
 
   res.json(req.session.cart);
 });
@@ -248,6 +261,13 @@ app.get("/api/details/:productId", function(req, res) {
     })
     .catch(console.log);
 });
+
+
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
+
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`);
