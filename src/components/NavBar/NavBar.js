@@ -55,7 +55,7 @@ class NavBar extends Component {
   }
   
   handleLogout() {
-    window.location.href = "http://localhost:3001/logout";
+    window.location.href = "/logout";
   }
 
   comboCloseLogin() {
