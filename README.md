@@ -6,7 +6,7 @@ A user can log in, favorite items, add items to a cart, and checkout using Strip
 
 This is a personally developed web app that I coded in order to practice things like React, Stripe, and database calls.
 
-A user can log in, favorite items, add andremove items from a cart, and checkout using Stripe API.
+A user can log in, favorite items, add and remove items from a cart, and checkout using Stripe API.
 
 ## Deployment
 
